@@ -32,7 +32,7 @@ app.use(
 )
 
 app.get('^/$|/silentpeakSerenades', (req, res)=>{
-    res.status(200).sendFile(path.join(__dirname, '/static/index.html'))
+    res.status(200).sendFile(path.join(__dirname, './static/index.html'))
 })
 app.use('/users', userRouter)
 app.use('/products', productRouter)
