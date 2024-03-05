@@ -30,7 +30,7 @@ userRouter.get('/:id', (req, res)=> {
 })
 
 // Adding a new user 
-userRouter.post('/register',bodyParser.json(), (req, res) => {
+userRouter.post('/addUser',bodyParser.json(), (req, res) => {
     try {
         users.createUser(req, res)
     }catch(e) {
@@ -42,7 +42,7 @@ userRouter.post('/register',bodyParser.json(), (req, res) => {
 })
 
 // Updating a user
-userRouter.patch('/update/:id', bodyParser.json(),
+userRouter.patch('/updateUser/:id', bodyParser.json(),
 (req,res)=> {
     try {
         users.updateUser(req,res)
@@ -55,7 +55,7 @@ userRouter.patch('/update/:id', bodyParser.json(),
 })
 
 // Deleting a user
-userRouter.delete('/delete/:id',(req,res)=> {
+userRouter.delete('/deleteUser/:id',(req,res)=> {
     try {
         users.deleteUser(req,res)
     }catch(e) {

@@ -41,6 +41,32 @@ productRouter.post('/addProduct', bodyParser.json(), (req, res) => {
     }
 } )
 
+// Updating a item
+productRouter.patch('/updateProduct/:id', bodyParser.json(), (req, res)=> {
+    try{
+        products.updateProduct(req, res)
+    }catch(e) {
+        res.json({
+            status: res.statusCode,
+            msg: "Failed to update item."
+        })
+    }
+})
+
+
+// Deleting a item
+
+productRouter.delete('/deleteProduct/:id', bodyParser.json(), (req, res)=> {
+    try{
+        products.deleteProduct(req, res)
+    }catch(e) {
+        res.json({
+            status: res.statusCode,
+            msg: "Failed to delete item."
+        })
+    }
+})
+
 export {
     productRouter, express
 }
