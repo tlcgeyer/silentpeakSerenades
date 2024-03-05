@@ -32,10 +32,10 @@ class Users{
     }
     async createUser(req, res){
         let data = req.body
-        data.userPass = await hash(data?.userPass, 10)
+        data.userPwd = await hash(data?.userPwd, 10)
         let user = {
             emailAdd: data.emailAdd,
-            userPass: data.userPass
+            userPwd: data.userPwd
         }
         const qry = `
         INSERT INTO Users
@@ -59,8 +59,8 @@ class Users{
     }
     async updateUser(req, res){
         const data = req.body
-        if(data?.userPass){
-            data.userPass = await hash(data?.userPass, 8)
+        if(data?.userPwd){
+            data.userPwd = await hash(data?.userPwd, 8)
         }
         const qry = `
         UPDATE Users

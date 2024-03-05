@@ -1,5 +1,5 @@
 
-import { express, userRouter } from './Controller/UserController.js';
+import { userRouter, express } from './Controller/UserController.js';
 import { productRouter } from './Controller/ProductController.js'
 import cookieParser from "cookie-parser";
 import { errorHandling } from "./middleware/ErrorHandling.js";
@@ -20,8 +20,9 @@ app.use((req, res, next)=>{
     res.header("Access-Control-Expose-Headers", "Authorization");
     next();
 })
+
 app.use(
-    express.static('./static'),
+    express.static('/static'),
     express.json(),
     express.urlencoded({
         extended: true
@@ -29,8 +30,9 @@ app.use(
     cookieParser(),
     cors()
 )
+
 app.get('^/$|/silentpeakSerenades', (req, res)=>{
-    res.status(200).sendFile(path.join(__dirname, './static/index.html'))
+    res.status(200).sendFile(path.join(__dirname, '/static/index.html'))
 })
 app.use('/users', userRouter)
 app.use('/products', productRouter)
