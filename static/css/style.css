@@ -1,0 +1,22 @@
+*,
+*::after,
+*::before{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+table{
+    margin: auto;
+    border: burlywood 2px;
+}
+h1{
+    text-align: center;
+}
+h3{
+    text-align: center;
+    padding: 20px 0px;
+}
+td{
+    border: pink 1px;
+    padding: 8px;
+}
