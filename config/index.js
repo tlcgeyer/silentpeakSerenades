@@ -1,6 +1,6 @@
 import { createPool } from "mysql";
 import { config } from "dotenv";
-config()
+// config()
 
 let connection = createPool({
     host: process.env.DB_HOST,
