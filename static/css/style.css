@@ -7,7 +7,8 @@
 }
 table{
     margin: auto;
-    border: burlywood 2px;
+    border:solid black 2px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 h1{
     text-align: center;
@@ -17,6 +18,13 @@ h3{
     padding: 20px 0px;
 }
 td{
-    border: pink 1px;
+    border: solid black 1px;
     padding: 8px;
 }
+
+th{
+    padding: 8px;
+    justify-content: space-between
+    ;
+}
+
