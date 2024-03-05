@@ -22,7 +22,6 @@ app.use((req, res, next)=>{
 })
 
 app.use(
-    express.static('/static'),
     express.json(),
     express.urlencoded({
         extended: true
@@ -31,9 +30,9 @@ app.use(
     cors()
 )
 
-app.get('^/$|/silentpeakSerenades', (req, res)=>{
-    res.status(200).sendFile(path.join(__dirname, './static/index.html'))
-})
+// app.get('^/$|/silentpeakSerenades', (req, res)=>{
+//     res.status(200).sendFile(path.join(__dirname, './static/index.html'))
+// })
 app.use('/users', userRouter)
 app.use('/products', productRouter)
 app.use(errorHandling)
