@@ -22,6 +22,7 @@
               <th>Gender</th>
               <th>Email</th>
               <th>User role</th>
+              <th>User Profile</th>
               <th>Action</th>
             </tr>
           </thead>
@@ -34,17 +35,19 @@
               <td>{{ user.gender }}</td>
               <td>{{ user.emailAdd }}</td>
               <td>{{ user.userRole }}</td>
+              <td>{{ user.userProfile }}</td>
               <td class="d-flex justify-content-between">
-                <updateUser/>
+                <EditUsers updateUserModal="updateUserModalTarget"/>
                 <button @click="event=> deleteUser(user.userID)" class="btn btn-sm btn-danger">Delete</button>
-                <!-- <button @click="editUser(user.userID)" id="edit" class="btn btn-sm btn-primary">Edit</button> -->
                 </td>
-                
-                
             </tr>
           </tbody>
+          <div class="row d-flex justify-content-center" v-else>
+          <SpinnerComp></SpinnerComp>
+        </div>
         </table>
       </div>
+
       <div class="row mt-5">
         <h2 class="display-4">Product CRUD</h2>
       </div>
@@ -74,15 +77,11 @@
                 <img :src="product.prodUrl" alt="prodPic">
               </td>
               <td>{{ product.prodDesc }}</td>
-              <td>R{{ product.amount }},00</td>
+              <td>R{{ product.prodAmount }},00</td>
               <td class="d-flex justify-content-between gap-2">
-                <!-- <updateProduct :product="product" /> -->
-               <button class="btn btn-sm btn-primary" @click="addingProduct"
-               data-bs-target="#updateProductModal" data-bs-toggle="modal"><updateProduct/></button>
-               
-                <!-- <button class="btn btn-sm btn-danger">Delete</button> -->
+                <!-- <button class="btn btn-sm btn-primary editButton" @click="event => editUser(users.userID)">Edit</button>
                 <button class="btn btn-sm btn-danger deleteButton" @click="event => 
-                deleteProduct(product.prodID)">Delete</button>
+                deleteProduct(product.prodID)">Delete</button> -->
               </td>
             </tr>
           </tbody>
@@ -92,9 +91,50 @@
 </template>
 
 <script>
+import EditUsers from '../components/EditUsers.vue'
+import SpinnerComp from '../components/SpinnerComp.vue'
+
     export default {
-        
+      components: {
+        EditUsers,
+        SpinnerComp
+      },
+      computed: {
+            users(){
+                return this.$store.state.users
+            },
+            products() {
+                return this.$store.state.products
+            }
+        },
+        mounted(){
+            this.$store.dispatch('fetchUsers')
+            this.$store.dispatch('fetchProducts')
+        },
+        methods: {
+            deleteUser(userID) {
+                this.$store.dispatch('deleteUser', {id: userID});
+            },
+            deleteProduct(prodID) {
+                this.$store.dispatch('deleteProduct', {id: prodID});
+            },
+            updateUser(user) {
+              let updatingUser ={
+                userID: user.userID,  
+                firstName: user.firstName,
+                lastName: user.lastName,
+                userAge:user.userAge, 
+                gender:user.gender,
+                emailAdd:user.emailAdd,
+                userPwd: user.userPwd,
+                userRole:user.userRole,
+                userProfile:user.userProfile,
+              }
+              this.$store.dispatch('updateUser',{id: user.userID, data: updatingUser} )
+              
+            }
     }
+  }
 </script>
 
 <style scoped>

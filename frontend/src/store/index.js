@@ -5,7 +5,7 @@ import {useCookies} from 'vue3-cookies'
 const {cookies} = useCookies()
 import router from '@/router'
 import AuthenticateUser from '../service/AuthenticateUser.js'
-const peakURL = 'https://silentpeakserenades.onrender.com'
+const peakURL = "https://silentpeakserenades.onrender.com"
 
 
 export default createStore({
@@ -92,7 +92,7 @@ export default createStore({
   //fetching a user
   async fetchUser(context, payload) {
     try{
-      let{result} = (await axios.get(`${peakURL}/users/${payload.id}`)).data
+      let{result} = (await axios.get(`${peakURL}/users${payload.id}`)).data
       if(result) {
         context.commit('setUser', result)
       }else {
@@ -115,7 +115,7 @@ export default createStore({
   //fetching all the users
   async fetchUsers(context) {
     try{
-      let {results} = (await axios.get(`${peakURL}/users`)).data
+      let {results} = (await axios.get(`${peakURL}/users/`)).data
       if(results) {
         context.commit('setUsers', results)
       }
@@ -131,7 +131,7 @@ export default createStore({
    // updating/editing the user
    async updateUser(context, payload) {
     try{
-      let{msg} = await axios.patch(`${peakURL}/users/updateUser/${payload.id}`)
+      let{msg} = await axios.patch(`${peakURL}/users/updateUser/${payload.userID}`, payload).data
       if(msg) {
         context.dispatch('fetchUsers')
         sweet({
@@ -157,7 +157,7 @@ export default createStore({
       // if(msg) {
         context.dispatch('fetchUsers')
         sweet({
-          title: 'Delete user',
+          title: 'User successfully deleted! ',
           text: msg,
           icon: "success",
           timer: 2000
