@@ -28,7 +28,7 @@
                 <template #cardBody>
                         <p class="card-text p-2" id="theName">
                         {{ product.prodName }}
-                    </p>
+                        </p>
                         <p class="card-text p-2 mx-2" id="theCat">
                             {{ product.category }}
                         </p>
@@ -36,10 +36,13 @@
                         <p class="card-text  p-2" id="theAmount">
                             R{{ product.prodAmount }},00
                         </p>
+                        <p class="card-text  p-2" id="theAmount">
+                            {{ product.category }}
+                        </p>
                     </div>
             </template>
             <template #cardFooter>
-                <router-link :to="{name: 'product', params: {id: product.prodID}} "><button type="button" class="deButton">View more</button></router-link>
+                <!-- <router-link :to="{name: 'product', params: {id: product.prodID}} "><button type="button" class="deButton">View more</button></router-link> -->
             </template>
             </Card> 
         </div>
@@ -98,7 +101,7 @@ export default {
 
 <style scoped>
 .card-title{
-    height: 180px;
+    height: 80px;
 }
 
 img[alt="prodPic"] {

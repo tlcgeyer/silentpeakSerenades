@@ -145,7 +145,7 @@ export default createStore({
       sweet({
         title: 'Error',
         text: 'Error in updating a user',
-        icon: "success",
+        icon: "error",
         timer: 2000
       })
     }
@@ -154,7 +154,7 @@ export default createStore({
   async deleteUser(context, payload) {
     try{
       let{msg} = await axios.delete(`${peakURL}/users/deleteUser/${payload.id}`)
-      // if(msg) {
+
         context.dispatch('fetchUsers')
         sweet({
           title: 'User successfully deleted! ',
@@ -162,7 +162,6 @@ export default createStore({
           icon: "success",
           timer: 2000
         })
-      // }
     }catch(e) {
       sweet({
         title: 'Error',
