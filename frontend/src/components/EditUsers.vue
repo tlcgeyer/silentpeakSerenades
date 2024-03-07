@@ -25,7 +25,7 @@
           </div>
 
           <div class="mb-3">
-            <input type="text" class="form-control w-50 mx-auto" placeholder="user age" v-model="payload.userAge">
+            <input type="number" class="form-control w-50 mx-auto" placeholder="user age" v-model="payload.userAge">
           </div>
 
           <div class="mb-3">
@@ -33,7 +33,7 @@
           </div>
 
           <div class="mb-3">
-            <input type="text" class="form-control w-50 mx-auto" placeholder="email address" v-model="payload.emailAdd">
+            <input type="email" class="form-control w-50 mx-auto" placeholder="email address" v-model="payload.emailAdd">
           </div>
 
           <div class="mb-3">

@@ -115,7 +115,7 @@ export default createStore({
   //fetching all the users
   async fetchUsers(context) {
     try{
-      let {results} = (await axios.get(`${peakURL}/users/`)).data
+      let {results} = (await axios.get(`${peakURL}/users`)).data
       if(results) {
         context.commit('setUsers', results)
       }
@@ -154,7 +154,6 @@ export default createStore({
   async deleteUser(context, payload) {
     try{
       let{msg} = await axios.delete(`${peakURL}/users/deleteUser/${payload.id}`)
-
         context.dispatch('fetchUsers')
         sweet({
           title: 'User successfully deleted! ',
