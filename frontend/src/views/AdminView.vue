@@ -1,7 +1,4 @@
 <template>
-    <div class="admin">
-        <h1>This is the admin page</h1>
-    </div>
     <div class="container mt-5">
       <div class="row">
         <h2 class="display-4">User CRUD</h2>
@@ -66,6 +63,8 @@
               <th>Product Image</th>
               <th>Product Description</th>
               <th>Product Amount</th>
+              <th>Category</th>
+              <th>Quantity</th>
               <th>Action</th>
             </tr>
           </thead>
@@ -78,13 +77,18 @@
               </td>
               <td>{{ product.prodDesc }}</td>
               <td>R{{ product.prodAmount }},00</td>
+              <td>{{ product.category }}</td>
+              <td>{{ product.quantity }}</td>
               <td class="d-flex justify-content-between gap-2">
-                <!-- <button class="btn btn-sm btn-primary editButton" @click="event => editUser(users.userID)">Edit</button>
+                <EditProducts updateProductModal="updateProductModalTarget"/>
                 <button class="btn btn-sm btn-danger deleteButton" @click="event => 
-                deleteProduct(product.prodID)">Delete</button> -->
+                deleteProduct(product.prodID)">Delete</button>
               </td>
             </tr>
           </tbody>
+          <div class="row d-flex justify-content-center" v-else>
+          <SpinnerComp></SpinnerComp>
+        </div>
         </table>
       </div>
     </div>
@@ -93,11 +97,14 @@
 <script>
 import EditUsers from '../components/EditUsers.vue'
 import SpinnerComp from '../components/SpinnerComp.vue'
+import EditProducts from '../components/EditProducts.vue'
+
 
     export default {
       components: {
         EditUsers,
-        SpinnerComp
+        SpinnerComp,
+        EditProducts
       },
       computed: {
             users(){
@@ -107,10 +114,7 @@ import SpinnerComp from '../components/SpinnerComp.vue'
                 return this.$store.state.products
             }
         },
-        mounted(){
-            this.$store.dispatch('fetchUsers')
-            this.$store.dispatch('fetchProducts')
-        },
+       
         methods: {
             deleteUser(userID) {
                 this.$store.dispatch('deleteUser', {id: userID});
@@ -132,8 +136,24 @@ import SpinnerComp from '../components/SpinnerComp.vue'
               }
               this.$store.dispatch('updateUser',{id: user.userID, data: updatingUser} )
               
+            },
+            updateProduct(product) {
+              let updatingProduct = {
+                prodID: product.prodID,
+                prodName: product.prodName,
+                prodDesc: product.prodDesc,
+                prodAmount: product.prodAmount,
+                category: product.category,
+                prodUrl: product.prodUrl,
+                quantity: product.quantity
+              }
+              this.$store.dispatch('updateProduct',{id: product.prodID, data: updatingProduct} )
             }
-    }
+    }, 
+    mounted(){
+            this.$store.dispatch("fetchUsers")
+            this.$store.dispatch("fetchProducts")
+        },
   }
 </script>
 
