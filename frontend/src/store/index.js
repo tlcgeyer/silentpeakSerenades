@@ -131,8 +131,7 @@ export default createStore({
    // updating/editing the user
    async updateUser(context, payload) {
     try{
-      let{msg} = await axios.patch(`${peakURL}/users/updateUser/${payload.userID}`, payload).data
-      if(msg) {
+      let{msg} = (await axios.patch(`${peakURL}/users/updateUser/${payload.userID}`, payload)).data
         context.dispatch('fetchUsers')
         sweet({
           title: 'Update user',
@@ -140,7 +139,6 @@ export default createStore({
           icon: "success",
           timer: 2000
         })
-      }
     }catch(e) {
       sweet({
         title: 'Error',
@@ -153,7 +151,7 @@ export default createStore({
   // deleting a user
   async deleteUser(context, payload) {
     try{
-      let{msg} = await axios.delete(`${peakURL}/users/deleteUser/${payload.id}`)
+      let{msg} = (await axios.delete(`${peakURL}/users/deleteUser/${payload.id}`))
         context.dispatch('fetchUsers')
         sweet({
           title: 'User successfully deleted! ',
