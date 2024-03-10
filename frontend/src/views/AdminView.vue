@@ -73,7 +73,7 @@
               <td>{{ product.prodID }}</td>
               <td>{{ product.prodName }}</td>
               <td>
-                <img :src="product.prodUrl" alt="prodPic">
+              <img :src="product.prodUrl" alt="prodPic" loading="lazy" >
               </td>
               <td>{{ product.prodDesc }}</td>
               <td>R{{ product.prodAmount }},00</td>
@@ -158,5 +158,7 @@ import EditProducts from '../components/EditProducts.vue'
 </script>
 
 <style scoped>
-
+img[alt="prodPic"] {
+    width: 110px;
+}
 </style>
