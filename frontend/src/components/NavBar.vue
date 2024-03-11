@@ -1,12 +1,24 @@
-<template>
+<template> 
+        <div class="container-fluid navii">
+            <span class="theHeader">Stocked worldwide - Free shipping on all orders over R1200</span>
+        </div>
+        <div class="header2"><span class="theTitle">Silent Peak Serenades</span></div>
+    <div>
+            <router-link to="/">
+           <img src="https://i.ibb.co/DfHHJTg/Screenshot-2024-03-01-232254.png" alt="logo">
+                </router-link> <br>
+    </div>
+
     <nav class="navbar navbar-expand-lg navbar-light" id="navbarr">
        <div class="container-fluid">
-       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
            <span class="navbar-toggler-icon"></span>
        </button>
-
-       <div class="collapse navbar-collapse justify-content-center inline-block d-flex w-100">
-           <ul class="navbar-nav">
+        
+            
+       <div class="collapse navbar-collapse" id="navbarNav">
+        <div class="justify-content-center inline-block d-flex w-100">
+             <ul class="navbar-nav">
            <li class="nav-item">
                    <router-link to ="/" class="nav-link">Home</router-link> 
            </li>  
@@ -17,19 +29,7 @@
            <li class="nav-item">
                <router-link to ="/instruments" class="nav-link">Instruments</router-link>
            </li>    
-           <!-- <div>
-            the pic of the logo for the website
-           <li class="nav-item ml-auto">
-            <router-link to="/">
-           <img src="https://i.ibb.co/hYrJKmp/Background-Eraser-20240220-094141227.png
-            " alt="logo">
-           </router-link>
-        </li>
-           </div> -->
-                   
-           <!-- <li class="nav-item">
-               <router-link to ="/product/:id" class="nav-link">Single prod</router-link>
-           </li>     -->
+         
                    
            <li class="nav-item">
                 <router-link to ="/admin" class="nav-link">Admin</router-link>
@@ -50,6 +50,7 @@
                 <router-link to ="/login" class="nav-link"></router-link>
            </li>
            </ul>
+        </div>  
          </div>
        </div>
    </nav>
@@ -64,6 +65,8 @@
 <style scoped>
 img[alt="logo"] {
    width: 130px;
+   margin-right: 70%;
+   margin-bottom: 30px;
 }
 
 .nav-item {
@@ -73,12 +76,45 @@ img[alt="logo"] {
        margin-inline: .2rem;
    }
 
-#searchNav {
-    margin-top: 8%;
-    border-radius: 10px;
-    border-color: #EE6F12;
-    background-color: white;
-    color: gray;
-    width: 20%;
+
+.navii {
+    background-color: #9F7E69;
+    color: white;
+    font-size: smaller;
+    font-style: italic;
+    font-weight: 500;
+    padding: 10px;
 }
+.theHeader {
+  width:100%;
+  overflow:hidden;
+}
+.theHeader {
+  animation: 30s slide-right;
+}
+
+@keyframes slide-right {
+  from {
+    margin-left: -100%;
+    width: 300%; 
+  }
+
+  to {
+    margin-left: 0%;
+    width: 100%;
+  }
+}
+
+.theTitle{
+    color: #907260;
+    text-shadow: 0px 0px 2px #9F7E69;
+    font-weight: 600;
+    font-size: 25px;
+}
+
+.header2 {
+    padding-top:50px;
+}
+
+
 </style>
