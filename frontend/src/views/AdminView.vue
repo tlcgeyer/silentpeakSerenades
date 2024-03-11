@@ -3,15 +3,20 @@
       <div class="row">
         <h2 class="display-4">User CRUD</h2>
       </div>
-    <AddUser/>
+   
       <div class="row mb-3">
         <div class="col">
+        
         </div>
       </div>
-      <div class="row">
+      <div class="row">  
+        <button class="btn btn  text-dark border-black" data-bs-toggle="modal" data-bs-target="#addUserModal">
+          Add User
+        </button> 
+        <AddUser addUserModel="addUserModelTarget"/>  
         <table class="table table-bordered">
           <thead class="bg-warning text-white">
-            <tr>
+            <tr> 
               <th>User ID</th>
               <th>First name</th>
               <th>Last name</th>
@@ -98,13 +103,14 @@
 import EditUsers from '../components/EditUsers.vue'
 import SpinnerComp from '../components/SpinnerComp.vue'
 import EditProducts from '../components/EditProducts.vue'
-
+import AddUser from '../components/AddUser.vue'
 
     export default {
       components: {
         EditUsers,
         SpinnerComp,
-        EditProducts
+        EditProducts,
+        AddUser
       },
       computed: {
             users(){
@@ -148,7 +154,7 @@ import EditProducts from '../components/EditProducts.vue'
                 quantity: product.quantity
               }
               this.$store.dispatch('updateProduct',{id: product.prodID, data: updatingProduct} )
-            }
+            },
     }, 
     mounted(){
             this.$store.dispatch("fetchUsers")
