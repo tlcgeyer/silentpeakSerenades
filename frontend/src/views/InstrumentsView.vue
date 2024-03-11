@@ -9,6 +9,15 @@
                 </div>
               
               <div class="col d-flex justify-content-end">
+                <!-- filter button -->
+                <!-- <button @click="filterCategories()" class="btn btn-light" id="filterCategories">
+                    <svg width="29" height="27" viewBox="0 0 29 27" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M4 13.5V1M25 26V21.3125M4 26V19.75M25 15.0625V1M14.5 5.6875V1M14.5 26V11.9375" stroke="#FFEEE2" stroke-linecap="round"/>
+                    <path d="M4 19.75C5.65685 19.75 7 18.3509 7 16.625C7 14.8991 5.65685 13.5 4 13.5C2.34315 13.5 1 14.8991 1 16.625C1 18.3509 2.34315 19.75 4 19.75Z" stroke="#FFEEE2" stroke-linecap="round"/>
+                    <path d="M14.5 11.9375C16.1569 11.9375 17.5 10.5384 17.5 8.8125C17.5 7.08661 16.1569 5.6875 14.5 5.6875C12.8431 5.6875 11.5 7.08661 11.5 8.8125C11.5 10.5384 12.8431 11.9375 14.5 11.9375Z" stroke="#FFEEE2" stroke-linecap="round"/>
+                    <path d="M25 21.3125C26.6569 21.3125 28 19.9134 28 18.1875C28 16.4616 26.6569 15.0625 25 15.0625C23.3431 15.0625 22 16.4616 22 18.1875C22 19.9134 23.3431 21.3125 25 21.3125Z" stroke="#FFEEE2" stroke-linecap="round"/>
+                    </svg>
+               </button> -->
                 <!-- sort button -->
                 <button @click="sortedProducts()" class="btn btn-light" id="sortProducts">
                   Sort by price
@@ -61,7 +70,8 @@ export default {
         return {
             filteredProducts: null,
             searchData: '',
-            highest: true
+            highest: true,
+            filterData: ''
         }
     },
     components: {
@@ -92,7 +102,14 @@ export default {
                     this.highest = false
                     return this.filteredProducts.sort((a,b)=> b.prodAmount - a.prodAmount)
                 }       
-            }
+            },
+            // filterCategories() {
+            //     this.filteredProducts = this.filterData == '' ? 
+            //     this.products :   
+            //     this.products.filter(item =>{
+            //         return item.category.toLowerCase().includes(this.filterData.toLowerCase());
+            //     }) 
+            // }
     }
 }
 </script>
@@ -104,6 +121,12 @@ export default {
 
 img[alt="prodPic"] {
     width: 110px;
+}
+
+#filterCategories {
+    background-color: #9F7E69;
+    color: white;
+    size: 20px;
 }
 
 </style>
