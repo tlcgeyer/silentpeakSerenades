@@ -231,8 +231,7 @@ export default createStore({
   // updating/editing a product
   async updateProduct(context, payload) {
     try{
-      let{msg} = await axios.patch(`${peakURL}/products/updateProduct/${payload.id}`)
-      if(msg) {
+      let{msg} = (await axios.patch(`${peakURL}/products/updateProduct/${payload.prodID}`, payload)).data
         context.dispatch('fetchProducts')
         sweet({
           title: 'Update product',
@@ -240,7 +239,6 @@ export default createStore({
           icon: "success",
           timer: 2000
         })
-      }
     }catch(e) {
       sweet({
         title: 'Error',
