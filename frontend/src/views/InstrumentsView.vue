@@ -11,9 +11,7 @@
               <div class="col d-flex justify-content-end">
                 <!-- sort button -->
                 <button @click="sortedProducts()" class="btn btn-light" id="sortProducts">
-                  Sort by<svg width="21" height="21" viewBox="0 0 21 21" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M10.5 8.5L14.5 12.5M14.5 12.5L18.5 8.5M14.5 12.5V2.5M10.5 12.544L6.5 8.5M6.5 8.5L2.5 12.544M6.5 8.5V18.5" stroke="#D27C2C" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
+                  Sort by price
                 </button>
               </div>
             </div>
@@ -89,10 +87,10 @@ export default {
             sortedProducts(){
                 if(!this.highest){
                     this.highest = true
-                    return this.filteredProducts.sort((a,b)=> a.amount - b.amount)
+                    return this.filteredProducts.sort((a,b)=> a.prodAmount - b.prodAmount)
                 }else{
                     this.highest = false
-                    return this.filteredProducts.sort((a,b)=> b.amount - a.amount)
+                    return this.filteredProducts.sort((a,b)=> b.prodAmount - a.prodAmount)
                 }       
             }
     }
