@@ -35,8 +35,8 @@ export default createStore({
      //registering a user
    async register(context, payload) {
     try {
-      let {msg} = (await axios.post(`${peakURL}/users/register`, payload)).data
-        if(msg) {
+      let {msg, token} = (await axios.post(`${peakURL}/users/register`, payload)).data
+        if(token) {
       context.dispatch('fetchUsers')
       sweet({
         title: 'Registration',
@@ -53,6 +53,7 @@ export default createStore({
         icon: "error",
         timer: 2000
       })
+      router.push({name: 'register'})
     }
   },
   async login(context, payload) {
@@ -89,6 +90,7 @@ export default createStore({
       })
     }
   },
+
   //fetching a user
   async fetchUser(context, payload) {
     try{
@@ -210,7 +212,6 @@ export default createStore({
   async addProduct(context, payload){
     try{
       let {msg} = (await axios.post(`${peakURL}/products/addProduct`, payload)).data
-      if(msg){
         context.dispatch('fetchProducts')
         sweet({
           title: 'Add Product',
@@ -218,7 +219,6 @@ export default createStore({
           icon: "success",
           timer: 2000
         })
-      }
     }catch(e){
       sweet({
         title: 'Error',
