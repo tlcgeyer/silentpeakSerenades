@@ -35,18 +35,26 @@
       </div>
 
       <!-- Shop by Collections! -->
-      <h6 class="display-6 subHeading">SHOP BY CATEGORY</h6>
+      <h6 class="display-6 subHeading">SHOP BY COLLECTION</h6>
       <div class="row">
         <div class="col">
-          <span>Wind</span>
+          <span>Dizi</span>
+
         </div>
 
         <div class="col">
-          <span>Plucked</span>
+          <span>Guqin</span>
         </div>
 
         <div class="col">
-          <span>Bowed</span>
+          <span>Pipa</span>
+        </div>
+
+        <div class="col">
+          <span>Guzheng</span>
+        </div>
+        <div class="col">
+          <span>Erhu</span>
         </div>
       </div>
     </div>
