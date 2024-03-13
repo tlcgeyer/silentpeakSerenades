@@ -2,20 +2,19 @@
         <div class="container-fluid navii">
             <span class="theHeader">Stocked worldwide - Free shipping on all orders over R1200</span>
         </div>
-        <div class="header2"><span class="theTitle">Silent Peak Serenades</span></div>
-    <div>
-            <router-link to="/">
+        <div class="header2">
+          
+         <router-link to="/">
            <img src="https://i.ibb.co/DfHHJTg/Screenshot-2024-03-01-232254.png" alt="logo">
-                </router-link> <br>
-    </div>
-
+          </router-link>
+        </div>
+        <span class="theTitle">Silent Peak Serenades</span>
     <nav class="navbar navbar-expand-lg navbar-light" id="navbarr">
        <div class="container-fluid">
        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
            <span class="navbar-toggler-icon"></span>
        </button>
-        
-            
+       
        <div class="collapse navbar-collapse" id="navbarNav">
         <div class="justify-content-center inline-block d-flex w-100">
              <ul class="navbar-nav">
@@ -65,8 +64,8 @@
 <style scoped>
 img[alt="logo"] {
    width: 130px;
-   margin-right: 70%;
-   margin-bottom: 30px;
+   
+  
 }
 
 .nav-item {
@@ -113,7 +112,7 @@ img[alt="logo"] {
 }
 
 .header2 {
-    padding-top:50px;
+    
 }
 
 
