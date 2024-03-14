@@ -62,6 +62,8 @@
 </script>
 
 <style scoped>
+@import url('https://fonts.googleapis.com/css2?family=Whisper&display=swap');
+
 img[alt="logo"] {
    width: 130px;
    
@@ -77,7 +79,7 @@ img[alt="logo"] {
 
 
 .navii {
-    background-color: #9F7E69;
+    background-color:#7A6354;
     color: white;
     font-size: smaller;
     font-style: italic;
@@ -107,6 +109,7 @@ img[alt="logo"] {
 .theTitle{
     color: #907260;
     text-shadow: 0px 0px 2px #9F7E69;
+    font-family: 'Whisper';
     font-weight: 600;
     font-size: 25px;
 }
