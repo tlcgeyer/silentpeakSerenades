@@ -8,7 +8,7 @@
           <img src="https://i.ibb.co/C9SpfJg/concert-grade-purple-bamboo-flute.png" class="card-img-top" alt="dizi">
             <div class="card-body">
                 <h5 class="card-title">Concert Grade Purple Bamboo Dizi </h5>
-                    <router-link to="" style=" color: white; background-color:#9f7e69 ;" class="btn">View more</router-link> 
+                    <router-link to="" style=" color: white; background-color:#7A6354 ;" class="btn">View more</router-link> 
               </div>
         </div>
       </div>
@@ -18,7 +18,7 @@
           <img src="https://i.ibb.co/C9SpfJg/concert-grade-purple-bamboo-flute.png" class="card-img-top" alt="guqin">
             <div class="card-body">
                 <h5 class="card-title">Concert Grade Purple Bamboo Dizi </h5>
-                    <router-link to="" style=" color: white; background-color:#9f7e69 ;" class="btn">View more</router-link> 
+                    <router-link to="" style=" color: white; background-color:#7A6354;" class="btn">View more</router-link> 
               </div>
         </div>
       </div>
@@ -28,7 +28,7 @@
           <img src="https://i.ibb.co/C9SpfJg/concert-grade-purple-bamboo-flute.png" class="card-img-top" alt="dizi">
             <div class="card-body">
                 <h5 class="card-title">Concert Grade Purple Bamboo Dizi </h5>
-                    <router-link to="" style=" color: white; background-color:#9f7e69 ;" class="btn">View more</router-link> 
+                    <router-link to="" style=" color: white; background-color:#7A6354;" class="btn">View more</router-link> 
               </div>
         </div>
       </div>
@@ -89,5 +89,6 @@ export default {
 
 .card {
   margin-left: 15%;
+  border-color: #9F7E69;
 }
 </style>
