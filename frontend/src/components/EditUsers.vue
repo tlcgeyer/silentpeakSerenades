@@ -81,9 +81,7 @@
         updatingUsers() {
           this.$store.dispatch("updateUser", this.payload);
         }
-        // editUser() {
-        //   this.$store.dispatch('updateUser',{id: this.payload.userID, data: this.payload} )
-        // }
+       
       }
     }
 </script>
