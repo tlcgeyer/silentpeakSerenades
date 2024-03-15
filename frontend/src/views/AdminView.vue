@@ -66,24 +66,24 @@
       <table class="table table-bordered">
         <thead class="bg-warning text-white">
           <tr>
-            <th>Product ID</th>
-            <th>Product Name</th>
-            <th>Product Image</th>
-            <th>Product Description</th>
-            <th>Product Amount</th>
-            <th>Category</th>
-            <th>Quantity</th>
-            <th>Action</th>
+            <th style="font-size: 13px;">Product ID</th>
+            <th style="font-size: 13px;;">Product Name</th>
+            <th style="font-size: 13px;">Product Image</th>
+            <th style="font-size: 13px;">Product Description</th>
+            <th style="font-size: 13px;">Product Amount</th>
+            <th style="font-size: 13px;">Category</th>
+            <th style="font-size: 13px;">Quantity</th>
+            <th style="font-size: 13px;">Action</th>
           </tr>
         </thead>
         <tbody v-if="products">
           <tr v-for="product in products" :key="product.prodID">
-            <td>{{ product.prodID }}</td>
-            <td>{{ product.prodName }}</td>
+            <td style="font-size: small; font-weight: 500;">{{ product.prodID }}</td>
+            <td style="font-size: small;">{{ product.prodName }}</td>
             <td>
               <img :src="product.prodUrl" alt="prodPic" loading="lazy">
             </td>
-            <td>{{ product.prodDesc }}</td>
+            <td style="font-size: small;  font-style: italic;">{{ product.prodDesc }}</td>
             <td>R{{ product.prodAmount }},00</td>
             <td>{{ product.category }}</td>
             <td>{{ product.quantity }}</td>
@@ -128,13 +128,13 @@ export default {
 
   methods: {
     register(userID) {
-      this.$store.dispatch('register', {id: userID})
+      this.$store.dispatch('register', { id: userID })
     },
     deleteUser(userID) {
       this.$store.dispatch('deleteUser', { id: userID });
     },
     addProduct(prodID) {
-      this.$store.dispatch('addProduct', {id: prodID})
+      this.$store.dispatch('addProduct', { id: prodID })
     },
     deleteProduct(prodID) {
       this.$store.dispatch('deleteProduct', { id: prodID });
@@ -166,7 +166,7 @@ export default {
       }
       this.$store.dispatch('updateProduct', { id: product.prodID, data: updatingProduct })
     },
-    
+
   },
   mounted() {
     this.$store.dispatch("fetchUsers")

@@ -123,6 +123,4 @@ img[alt="logo"] {
   font-weight: 600;
   font-size: 25px;
 }
-
-
 </style>
