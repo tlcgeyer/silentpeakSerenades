@@ -45,7 +45,7 @@
 
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-          <button type="submit" @click.prevent="register"  class="btn btn-success" data-bs-dismiss="modal">Save changes</button>
+          <button type="submit" @click.prevent="addingUser"  class="btn btn-success" data-bs-dismiss="modal">Save</button>
         </div>
     </div>
   </div>
@@ -67,13 +67,13 @@
           emailAdd: '',
           userPwd: '',
           userRole: '',
-          userProfile: ''
+          userProfile: '',
         }
       }
     },
     methods: {
-      register() {
-        this.$store.dispatch('register', this.payload)
+      addingUser() {
+        this.$store.dispatch("register", this.payload)
       }
     }
   }

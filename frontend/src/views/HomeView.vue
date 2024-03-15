@@ -1,63 +1,64 @@
 <template>
   <div class="container">
+
     <h6 class="display-6 heading1">FEATURED PRODUCTS</h6>
     <!-- Featured products -->
     <div class="row">
       <div class="col">
         <div class="card" style="width: 18rem;">
           <img src="https://i.ibb.co/C9SpfJg/concert-grade-purple-bamboo-flute.png" class="card-img-top" alt="dizi">
-            <div class="card-body">
-                <h5 class="card-title">Concert Grade Purple Bamboo Dizi </h5>
-                    <router-link to="" style=" color: white; background-color:#7A6354 ;" class="btn">View more</router-link> 
-              </div>
+          <div class="card-body">
+            <h5 class="card-title">Concert Grade Purple Bamboo Dizi </h5>
+            <router-link to="" style=" color: white; background-color:#7A6354 ;" class="btn">View more</router-link>
+          </div>
         </div>
       </div>
 
       <div class="col">
         <div class="card" style="width: 18rem;">
           <img src="https://i.ibb.co/C9SpfJg/concert-grade-purple-bamboo-flute.png" class="card-img-top" alt="guqin">
-            <div class="card-body">
-                <h5 class="card-title">Concert Grade Purple Bamboo Dizi </h5>
-                    <router-link to="" style=" color: white; background-color:#7A6354;" class="btn">View more</router-link> 
-              </div>
+          <div class="card-body">
+            <h5 class="card-title">Concert Grade Purple Bamboo Dizi </h5>
+            <router-link to="" style=" color: white; background-color:#7A6354;" class="btn">View more</router-link>
+          </div>
         </div>
       </div>
 
       <div class="col">
         <div class="card" style="width: 18rem;">
           <img src="https://i.ibb.co/C9SpfJg/concert-grade-purple-bamboo-flute.png" class="card-img-top" alt="dizi">
-            <div class="card-body">
-                <h5 class="card-title">Concert Grade Purple Bamboo Dizi </h5>
-                    <router-link to="" style=" color: white; background-color:#7A6354;" class="btn">View more</router-link> 
-              </div>
-        </div>
-      </div>
-      </div>
-
-      <!-- Shop by Collections! -->
-      <h6 class="display-6 subHeading">SHOP BY COLLECTION</h6>
-      <div class="row">
-        <div class="col">
-          <span>Dizi</span>
-
-        </div>
-
-        <div class="col">
-          <span>Guqin</span>
-        </div>
-
-        <div class="col">
-          <span>Pipa</span>
-        </div>
-
-        <div class="col">
-          <span>Guzheng</span>
-        </div>
-        <div class="col">
-          <span>Erhu</span>
+          <div class="card-body">
+            <h5 class="card-title">Concert Grade Purple Bamboo Dizi </h5>
+            <router-link to="" style=" color: white; background-color:#7A6354;" class="btn">View more</router-link>
+          </div>
         </div>
       </div>
     </div>
+
+    <!-- Shop by Collections! -->
+    <h6 class="display-6 subHeading">SHOP BY COLLECTION</h6>
+    <div class="row">
+      <div class="col">
+        <span>Dizi</span>
+
+      </div>
+
+      <div class="col">
+        <span>Guqin</span>
+      </div>
+
+      <div class="col">
+        <span>Pipa</span>
+      </div>
+
+      <div class="col">
+        <span>Guzheng</span>
+      </div>
+      <div class="col">
+        <span>Erhu</span>
+      </div>
+    </div>
+  </div>
 </template>
 
 <script>

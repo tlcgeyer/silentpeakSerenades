@@ -33,7 +33,7 @@ export default createStore({
   },
   actions: {
      //registering a user
-   async register(context, payload) {
+   async  register(context, payload) {
     try {
       let {msg, token} = (await axios.post(`${peakURL}/users/register`, payload)).data
         if(token) {
