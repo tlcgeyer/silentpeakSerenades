@@ -10,28 +10,92 @@
       </li>
     </ul>
     <div class="main-content">
+      <h5 class="display-6">Register</h5> <br><br> <br>
+      <div class="justify-content-center" id="registerForm">
+         <form @submit.prevent="registerForm">
+          <!-- first name -->
+          <div class="floating-label">
+            <label for="firstName">First Name</label>
+          <input type="text" oninvalid="this.setCustomValidity('Please enter your first name')"
+            oninput="this.setCustomValidity('')" id="firstName" v-model="firstName"
+            required />
+          </div><br>
+         
+          <!-- last name -->
+          <div class="d-flex justify-content-start">
+            <label for="lastName">Last Name</label>
+              <input type="text"
+              oninvalid="this.setCustomValidity('Please enter your last name')" oninput="this.setCustomValidity('')"
+              id="lastName" v-model="lastName" required />
+          </div><br>
 
-      <h5 class="display-6">Register</h5>
-      <form @submit.prevent="registerForm">
-        <div class="justify-content-center" id="registerForm">
-          <label>Email Address <br><input type="email" class="form-input" v-model="emailAdd" required /></label> <br>
-          <label>Password <br><input type="password" class="form-input" v-model="userPwd" required /></label> <br><br>
-        </div>
+          <div class="d-flex justify-content-start">
+          <!-- gender -->
+          <label for="gender">Gender</label>
+            <input type="text" id="gender"
+              oninvalid="this.setCustomValidity('Please provide your gender')" oninput="this.setCustomValidity('')"
+              v-model="gender" required />
+          </div>
 
-        <div class="d-flex justify-content-center">
-          <router-link to="/login"><button type="submit" class="signupBtn">login</button> <br></router-link>
+          <div class="d-flex justify-content-start">
+          <!-- age -->
+          <label for="age">Age</label>
+            <input type="text" 
+              oninvalid="this.setCustomValidity('Please provide your age')" oninput="this.setCustomValidity('')"
+              v-model="userAge" required />
+          </div>
+
+          <div class="d-flex justify-content-start">
+            <label for="email">Email</label>
+                <input type="email" 
+                  oninvalid="this.setCustomValidity('Please enter your email address')"
+                  oninput="this.setCustomValidity('')" v-model="emailAdd" required />
+          </div>
+
+          <div class="d-flex justify-content-start">
+            <label for="password">Password</label>
+                <input type="password"
+                  oninvalid="this.setCustomValidity('Please enter a password')" oninput="this.setCustomValidity('')"
+                  id="password" v-model="userPwd" required />
+          </div> <br>
+
+           <div class="d-flex justify-content-center">
+          <button  @click="registerForm" type="submit" class="signupBtn">Create account</button> <br>
+        </div> <br><br>
+        </form>
+      </div>
         </div>
-      </form>
-      <br>
     </div>
-
-  </div>
 </template>
 
 <script>
 
 export default {
+  data() {
+    return{
+      firstName: "",
+      lastName: "",
+      userAge: "",
+      gender: "",
+      emailAdd: "",
+      userPwd: ""
+    }
+  },
+  methods: {
+    async registerForm() {
+        // const userData = {
+        // firstName: this.firstName,
+        // lastName: this.lastName,
+        // userAge: this.userAge,
+        // gender: this.gender,
+        // emailAdd: this.emailAdd,
+        // userPwd: this.userPwd,
+        // };
 
+    await this.$store.dispatch('register', this.$data);
+    this.$router.push('/login'); 
+    }
+  }
 };
 </script>
 
@@ -61,4 +125,5 @@ export default {
   height: 0.7em;
   content: '';
 }
+
 </style>

@@ -33,7 +33,7 @@ export default createStore({
   },
   actions: {
      //registering a user
-   async  register(context, payload) {
+   async register(context, payload) {
     try {
       let {msg, token} = (await axios.post(`${peakURL}/users/register`, payload)).data
         if(token) {
@@ -137,6 +137,7 @@ export default createStore({
         context.dispatch('fetchUsers')
         sweet({
           title: 'Update user',
+          imageUrl:"https://giphy.com/embed/RLPxCiyYgfak0LHVlG",
           text: msg,
           icon: "success",
           timer: 2000

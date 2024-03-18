@@ -15,11 +15,18 @@
         <div class="row">
             <div class="col-md-6">
                 <form @submit.prevent="loginInto">
-                    <label>Email Address<input type="email" v-model="emailAdd" /></label>
-                    <label>Password<input type="password" v-model="userPwd" /></label>
+                <div class="inputs">
+                <label for="email">Email</label>
+                <input type="email" oninvalid="this.setCustomValidity('Please enter your email address')"
+                  oninput="this.setCustomValidity('')" class="email" name="email" v-model="emailAdd" placeholder="Email">
+                <label for="password">Password</label>
+                <input type="password" oninvalid="this.setCustomValidity('Please enter your password')"
+                  oninput="this.setCustomValidity('')" class="email" name="password" v-model="userPwd"
+                  placeholder="Password">
+              </div>
+
                     <router-link to="/"><button type="submit">login</button></router-link>
                 </form>
-
             </div>
         </div>
     </div>
@@ -27,7 +34,26 @@
 
 <script>
 export default {
-
+    data() {
+        return{
+            emailAdd: "",
+            userPwd:""
+        }
+    },
+    beforeCreate() {
+        this.$store.dispatch("cookieCheck")
+    },
+    methods: {
+        async loginInto() {
+        //     try{
+        //         const payload = {
+        //             emailAdd : this.emailAdd,
+        //             userPwd: this.userPwd
+        //         }
+        //     } 
+        // }
+    }
+}
 }
 </script>
 
