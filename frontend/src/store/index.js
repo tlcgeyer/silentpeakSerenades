@@ -252,6 +252,7 @@ export default createStore({
   // deleting a product
   async deleteProduct(context, payload) {
     try{
+      console.log(payload);
       let{msg} = await axios.delete(`${peakURL}/products/deleteProduct/${payload.id}`)
       // if(msg) {
         context.dispatch('fetchProduct')
