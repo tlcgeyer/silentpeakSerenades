@@ -15,15 +15,16 @@
         <div class="row">
             <div class="col-md-6">
                 <form @submit.prevent="loginInto">
-                <div class="inputs">
-                <label for="email">Email</label>
-                <input type="email" oninvalid="this.setCustomValidity('Please enter your email address')"
-                  oninput="this.setCustomValidity('')" class="email" name="email" v-model="emailAdd" placeholder="Email">
-                <label for="password">Password</label>
-                <input type="password" oninvalid="this.setCustomValidity('Please enter your password')"
-                  oninput="this.setCustomValidity('')" class="email" name="password" v-model="userPwd"
-                  placeholder="Password">
-              </div>
+                    <div class="inputs">
+                        <label for="email">Email</label>
+                        <input type="email" oninvalid="this.setCustomValidity('Please enter your email address')"
+                            oninput="this.setCustomValidity('')" class="email" name="email" v-model="emailAdd"
+                            placeholder="Email">
+                        <label for="password">Password</label>
+                        <input type="password" oninvalid="this.setCustomValidity('Please enter your password')"
+                            oninput="this.setCustomValidity('')" class="email" name="password" v-model="userPwd"
+                            placeholder="Password">
+                    </div>
 
                     <router-link to="/"><button type="submit">login</button></router-link>
                 </form>
@@ -33,28 +34,34 @@
 </template>
 
 <script>
+import { useCookies } from 'vue3-cookies';
+const { cookies } = useCookies()
+
 export default {
     data() {
-        return{
+        return {
             emailAdd: "",
-            userPwd:""
+            userPwd: ""
+        }
+    },
+    computed: {
+        user() {
+            return this.$store.state.user
+        }
+    },
+    methods: {
+        login() {
+            this.$store.dispatch("login", this.payload);
         }
     },
     beforeCreate() {
-        this.$store.dispatch("cookieCheck")
+        this.$store.dispatch("fetchUsers");
     },
-    methods: {
-        async loginInto() {
-        //     try{
-        //         const payload = {
-        //             emailAdd : this.emailAdd,
-        //             userPwd: this.userPwd
-        //         }
-        //     } 
-        // }
-    }
+    mounted() {
+        console.log(cookies.get("LegitUser"));
+    },
 }
-}
+
 </script>
 
 <style scoped>

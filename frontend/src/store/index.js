@@ -13,7 +13,9 @@ export default createStore({
     user: null,
     users: null,
     product: null,
-    products: null
+    products: null,
+    token: null,
+    msg: null
   },
   getters: {
   },
@@ -29,7 +31,8 @@ export default createStore({
     },
     setProducts(state, value) {
       state.products = value
-    }
+    },
+    
   },
   actions: {
      //registering a user
