@@ -1,15 +1,14 @@
 import { Users } from "./Users.js";
 import { Products } from "./Products.js";
 import {Cart} from "./Cart.js";
-import {getUserByEmail} from "./User.js";
+
 
 let users = new Users()
 let products = new Products()
-let cart = new Cart()
-getUserByEmail
+// let cart = new Cart()
 
 export{
     users,
     products,
-    cart
+    // cart
 }
