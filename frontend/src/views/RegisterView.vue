@@ -83,7 +83,7 @@ export default {
   },
   methods: {
     registerForm() {
-      this.$store.dispatch("register", this.payload)
+      this.$store.dispatch("addUser", this.payload)
       
     }
     }

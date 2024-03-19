@@ -127,8 +127,8 @@ export default {
   },
 
   methods: {
-    register(userID) {
-      this.$store.dispatch('register', { id: userID })
+    addUser(userID) {
+      this.$store.dispatch('addUser', { id: userID })
     },
     deleteUser(userID) {
       this.$store.dispatch('deleteUser', { id: userID });

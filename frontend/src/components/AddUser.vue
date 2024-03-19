@@ -59,7 +59,7 @@
     data() {
       return {
         payload:{
-          userID: null,
+          userID: '',
           firstName: '',
           lastName: '',
           userAge: '',

@@ -36,9 +36,9 @@ export default createStore({
   },
   actions: {
      //registering a user
-   async register(context, payload) {
+   async addUser(context, payload) {
     try {
-      let {msg, token} = (await axios.post(`${peakURL}/users/register`, payload)).data
+      let {msg, token} = (await axios.post(`${peakURL}/users/addUser`, payload)).data
         if(token) {
       context.dispatch('fetchUsers')
       sweet({
