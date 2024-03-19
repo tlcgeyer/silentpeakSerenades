@@ -30,7 +30,7 @@ class Users{
             })
         })
     }
-    async createUser(req, res){
+    async addUser(req, res){
         let data = req.body
         data.userPwd = await hash(data?.userPwd, 10)
         let user = {
