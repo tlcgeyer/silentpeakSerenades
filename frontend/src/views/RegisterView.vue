@@ -17,7 +17,7 @@
           <div class="floating-label">
             <label for="firstName">First Name</label>
           <input type="text" oninvalid="this.setCustomValidity('Please enter your first name')"
-            oninput="this.setCustomValidity('')" id="firstName" v-model="firstName"
+            oninput="this.setCustomValidity('')" id="firstName" v-model="payload.firstName"
             required />
           </div><br>
          
@@ -26,7 +26,7 @@
             <label for="lastName">Last Name</label>
               <input type="text"
               oninvalid="this.setCustomValidity('Please enter your last name')" oninput="this.setCustomValidity('')"
-              id="lastName" v-model="lastName" required />
+              id="lastName" v-model="payload.lastName" required />
           </div><br>
 
           <div class="d-flex justify-content-start">
@@ -34,7 +34,7 @@
           <label for="gender">Gender</label>
             <input type="text" id="gender"
               oninvalid="this.setCustomValidity('Please provide your gender')" oninput="this.setCustomValidity('')"
-              v-model="gender" required />
+              v-model="payload.gender" required />
           </div>
 
           <div class="d-flex justify-content-start">
@@ -42,21 +42,21 @@
           <label for="age">Age</label>
             <input type="text" 
               oninvalid="this.setCustomValidity('Please provide your age')" oninput="this.setCustomValidity('')"
-              v-model="userAge" required />
+              v-model="payload.userAge" required />
           </div>
 
           <div class="d-flex justify-content-start">
             <label for="email">Email</label>
                 <input type="email" 
                   oninvalid="this.setCustomValidity('Please enter your email address')"
-                  oninput="this.setCustomValidity('')" v-model="emailAdd" required />
+                  oninput="this.setCustomValidity('')" v-model="payload.emailAdd" required />
           </div>
 
           <div class="d-flex justify-content-start">
             <label for="password">Password</label>
                 <input type="password"
                   oninvalid="this.setCustomValidity('Please enter a password')" oninput="this.setCustomValidity('')"
-                  id="password" v-model="userPwd" required />
+                  id="password" v-model="payload.userPwd" required />
           </div> <br>
 
            <div class="d-flex justify-content-center">
@@ -73,12 +73,17 @@
 export default {
   data() {
     return{
-      firstName: "",
-      lastName: "",
-      userAge: "",
-      gender: "",
-      emailAdd: "",
-      userPwd: ""
+      payload:{
+        // userID: '',
+          firstName: '',
+          lastName: '',
+          userAge: '',
+          gender: '',
+          emailAdd: '',
+          userPwd: '',
+          // userRole: '',
+          // userProfile: '',
+      }
     }
   },
   methods: {
