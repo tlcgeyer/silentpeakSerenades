@@ -126,7 +126,6 @@ export default {
   name: "InstrumentsView",
   data() {
     return {
-      filteredProducts: null,
       searchData: "",
       highest: true,
       filterData: "",
@@ -143,14 +142,11 @@ export default {
   },
   mounted() {
     this.$store.dispatch("fetchProducts");
-    this.filteredProducts = this.products;
   },
   methods: {
     searchProduct() {
-      this.filteredProducts =
         this.searchData == ""
-          ? this.filteredProducts
-          : this.products.filter((item) => {
+          this.products.filter((item) => {
               return item.prodName.toLowerCase().includes(this.searchData);
             });
     },
@@ -193,14 +189,9 @@ export default {
 }
 
 img[alt="prodPic"] {
-  width: 110px;
+  width: 200px;
 }
 
-#filterCategories {
-  background-color: #9f7e69;
-  color: white;
-  size: 20px;
-}
 
 .breadcrumb:not(:first-child):before {
   display: inline-block;

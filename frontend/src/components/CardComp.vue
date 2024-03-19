@@ -20,8 +20,8 @@
 
 <style scoped>
 .card {
-    width: 18rem;
-    gap: 3rem;
+    width: 20rem;
+    gap: 4rem;
     padding-top: 90px;
 }
 </style>

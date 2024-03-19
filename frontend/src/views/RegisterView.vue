@@ -82,21 +82,13 @@ export default {
     }
   },
   methods: {
-    async registerForm() {
-        // const userData = {
-        // firstName: this.firstName,
-        // lastName: this.lastName,
-        // userAge: this.userAge,
-        // gender: this.gender,
-        // emailAdd: this.emailAdd,
-        // userPwd: this.userPwd,
-        // };
-
-    await this.$store.dispatch('register', this.$data);
-    this.$router.push('/login'); 
+    registerForm() {
+      this.$store.dispatch("register", this.payload)
+      
+    }
     }
   }
-};
+
 </script>
 
 
