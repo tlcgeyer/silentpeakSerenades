@@ -16,12 +16,13 @@ class Cart {
           status: res.statusCode,
           msg: "Failed to retrieve cart items."
         });
-      }
-      res.json ({
+      }catch(e) {
+             res.json ({
         status: res.statusCode,
         result,
       });
-    });
+    });    
+      }
   }
 
     //adding items to the cart
