@@ -15,7 +15,8 @@ export default createStore({
     product: null,
     products: null,
     token: null,
-    msg: null
+    msg: null,
+    cart: []
   },
   getters: {
   },
@@ -32,7 +33,15 @@ export default createStore({
     setProducts(state, value) {
       state.products = value
     },
-    
+    setToken(state, token) {
+      state.token = token;
+      cookies.set("userToken", token, {
+        expires: 1,
+        path: "/",
+        secure: true,
+        sameSite: "None",
+      });
+    }
   },
   actions: {
      //registering a user
@@ -40,7 +49,8 @@ export default createStore({
     try {
       let {msg, token} = (await axios.post(`${peakURL}/users/addUser`, payload)).data
         if(token) {
-      context.dispatch('fetchUsers')
+          context.dispatch('fetchUsers');
+          context.commit("setToken", token);
       sweet({
         title: 'Registration',
         text: msg,
@@ -212,7 +222,8 @@ export default createStore({
         timer: 2000
       })
     }
-  },
+    },
+  // adding a new product
   async addProduct(context, payload){
     try{
       let {msg} = (await axios.post(`${peakURL}/products/addProduct`, payload)).data
@@ -274,7 +285,79 @@ export default createStore({
         timer: 2000
       })
     }
-  },
+    },
+  //  //adding products to the cart
+  // async addToCart(context, payload) {
+  //     try {
+  //       applyToken()
+  //       let { msg } = (await axios.post(`${peakURL}/cart/add`, payload)).data;
+  //       context.dispatch("fetchCart");
+  //       if (cookies.get("VerifiedUser")) {
+  //         sweet ({
+  //           title: "Added to Cart",
+  //           text: msg,
+  //           icon: "success",
+  //           timer: 4000,
+  //         });
+  //       } else {
+  //         router.push({ name: "login" });
+  //       }
+  //     } catch (e) {
+  //       sweet ({
+  //         title: "ERROR",
+  //         text: "Cannot add to cart",
+  //         icon: "error",
+  //         timer: 4000,
+  //       });
+  //     }
+  //   },
+  // //removing thing from cart
+  //   async deleteFromCart(context, payload) {
+  //     try {
+  //       applyToken()
+  //       let { data } = await axios.delete(`${peakURL}/cart/delete/${payload}`);
+  //       if (data) {
+  //         context.dispatch("fetchCart");
+  //         sweet ({
+  //           title: "Removed Agent",
+  //           text: data.msg,
+  //           icon: "success",
+  //           timer: 2000,
+  //         });
+  //         setTimeout(() => {
+  //           location.reload()
+  //         }, 2000);
+  //       }
+  //     } catch (e) {
+  //       sweet ({
+  //         title: "ERROR",
+  //         text: "Cannot remove item from cart",
+  //         icon: "error",
+  //         timer: 4000,
+  //       });
+  //     }
+  //   },
+  // //clearing the cart
+  //      async clearCart(context) {
+  //     try {
+  //       let { data } = await axios.delete(`${peakURL}cart/delete`);
+  //       console.log(data);
+  //       context.dispatch("fetchCart");
+  //       sweet({
+  //         title: "Cart successfully cleared!",
+  //         text: data.msg,
+  //         icon: "success",
+  //         timer: 4000,
+  //       });
+  //     } catch (e) {
+  //       sweet({
+  //         title: "ERROR",
+  //         text: "Unable to clear the cart",
+  //         icon: "error",
+  //         timer: 4000,
+  //       });
+  //     }
+  //   },
   },
   modules: {
   }
