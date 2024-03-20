@@ -1,51 +1,62 @@
-// import {cart} from '../model/index.js'
-// import { express } from 'express';
-// import bodyParser from 'body-parser';
+import {cart} from '../model/index.js'
+import { express } from 'express';
+import bodyParser from 'body-parser';
+import { verifyAToken } from '../middleware/AuthenticateUser.js';
 
-// const cartRouter = express.Router()
+const cartRouter = express.Router()
 
-// // fetching the item
-// cartRouter.get('/', (req, res) => {
-//     try{
-//         cart.fetchCartItems(req,res)
-//     }catch(e) {
-//         res.json({
-//             status: res.statusCode,
-//             msg: 'Failed to retrieve items.'
-//         })
-//     }
-// })
+// fetching the item
+cartRouter.get('/', verifyAToken, (req, res) => {
+    try{
+        cart.fetchCart(req,res)
+    }catch(e) {
+        res.json({
+            status: res.statusCode,
+            msg: 'Failed to retrieve items.'
+        })
+    }
+})
 
-// //add to cart
-// cartRouter.post('/addToCart', bodyParser.json(), (req, res) => {
-//     try{
-//         products.addToCart(req, res)
-//     }catch(e) {
-//         res.json({
-//             status: res.statusCode,
-//             msg: "Failed to add item."
-//         })
-//     }
-// })
-// getUserIDByEmail(userEmail).then((userID)=> {
-//     const { productID } = req.body
-//     cart.addToCart({userID, productID}, res)
-//   }).catch((error)=>{
-//     console.error("Error getting userID: ", error)
-//     return res.status(500).json({msg: "Internal server error"})
-//   })
+//add to cart
+cartRouter.post('/add', bodyParser.json(), verifyAToken, (req, res) => {
+    try{
+        cart.addToCart(req, res)
+    }catch(e) {
+        res.json({
+            status: res.statusCode,
+            msg: "Failed to add item."
+        })
+    }
+})
 
   
-// //removing item from the cart
-// cartRouter.delete('/deleteFromCart/:id', bodyParser.json(), (req, res)=> {
-//     try{
-//         products.deleteFromCart(req, res)
-//     }catch(e) {
-//         res.json({
-//             status: res.statusCode,
-//             msg: "Failed to delete item."
-//         })
-//     }
-// })
+//deleting item from the cart
+cartRouter.delete('/delete/:id', bodyParser.json(), verifyAToken, (req, res)=> {
+    try{
+        cart.deleteFromCart(req, res)
+    }catch(e) {
+        res.json({
+            status: res.statusCode,
+            msg: "Failed to delete item from cart."
+        })
+    }
+})
+
+// clearing the cart
+cartRouter.delete('/delete', bodyParser.json(), verifyAToken ,(req, res) => {
+    try {
+        cart.clearCart(req, res)
+    } catch (e) {
+        res.json ({
+            status: res.statusCode,
+            msg: "Could Not Clear Cart"
+        })
+    }
+})
+
+export {
+    cartRouter,
+    express
+}
 
 

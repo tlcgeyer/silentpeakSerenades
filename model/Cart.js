@@ -1,89 +1,78 @@
-// import { connection as db} from "../config/index.js";
+import { connection as db } from "../config/index.js";
+import {config} from "dotenv"
+config();
 
-// class Cart {
-//     //fetching products from cart
-//     fetchCartItems(userID, res) {
-//         const query = `
-//         SELECT cartID, prodID, userID 
-//         from Cart WHERE userID = ?
-//         `;
-//         db.query(query, [userID], (err, results) => {
-//             if (!err) {
-//               res.json({
-//                 status: res.statusCode,
-//                 results,
-//               });
-//             } else {
-//               throw (
-//                 err &&
-//                 res.json({
-//                   status: res.statusCode,
-//                   err,
-//                   msg: "An error has occurred",
-//                 })
-//               );
-//             }
-//           });
-//         }
+class Cart {
+    //fetching products from cart
+    fetchCart(req, res) {
+        try {
+            const qry = `
+        SELECT cartID, prodID, userID 
+        from Cart
+            WHERE userID = ?
+        `;
+            db.query(qry, [req.body.userID], (err, result) => {
+               if (err) throw err;
+                res.json ({
+                    status: res.statusCode,
+                    result,
+                });
+            });
+        } catch (e) {
+            res.json ({
+                status: res.statusCode,
+                msg: "Unable to fetch cart at the moment.",
+            });
+        }
+    }
+    //adding items to the cart
+    addToCart(req, res) {
+          const qry = `
+                INSERT INTO Cart
+                SET ?
+            `;
+        
+          db.query(qry, [req.body], (err) => {
+            if (err) throw err;
+            res.json({
+                status: res.statusCode,
+                msg: "Added To Cart"
+            });
+        });
+       
+    }
 
-//     //adding items to the cart
-//     addToCart({ userID, productID }, res) {
-//         try {
-//           const query = `
-//                 INSERT INTO Cart (userID, productID) VALUES(?,?)
-//             `;
-//           const data = [userID, productID];
-//           db.query(query, data, (err) => {
-//             if (!err) {
-//               res.json({
-//                 status: res.statusCode,
-//                 msg: "Product added to cart successfully",
-//               });
-//             } else {
-//               throw (
-//                 err &&
-//                 res.json({
-//                   status: res.statusCode,
-//                   msg: "Something went wrong",
-//                   err,
-//                 })
-//               );
-//             }
-//           });
-//         } catch (e) {
-//           console.error(e);
-//           res
-//             .status(500)
-//             .json({ status: res.statusCode, msg: "Internal server error", err: e });
-//         }
-//     }
+    //removing stuff from the cart
+    deleteFromCart(req,res) {
+        const qry = `
+                DELETE FROM Cart 
+                WHERE orderID = ${req.params.id}
+            `;
+        db.query(qry, [req.body], (err) => {
+           if (err) throw err;
+            res.json ({
+                status: res.statusCode,
+                msg: "Item deleted from cart",
+            });
+        });
+    }
+    
+    //clearing the cart
+       async clearCart(req, res) {
+        const qry = `
+        DELETE FROM Cart
+        WHERE userID = ?;
+        `
+        db.query(qry, [req.body.userID], (err) => {
+            if (err) throw err;
+            res.json({
+                status: statusCode,
+                msg: "You Have Cleared the Cart",
+            });
+        });
+    }
+}
 
-//     //removing stuff from the cart
-//     deleteFromCart(userID, productID, res) {
-//         const qry = `
-//                 DELETE FROM Cart 
-//                 WHERE userID = ? AND productID = ?
-//             `;
-//         const data = [userID, productID];
-//         db.query(qry, data, (err) => {
-//           if (!err) {
-//             res.json({
-//               status: res.statusCode,
-//               msg: "Item removed from cart",
-//             });
-//           } else {
-//             throw (
-//               err &&
-//               res.json({
-//                 status: res.statusCode,
-//                 msg: "Something went wrong",
-//               })
-//             );
-//           }
-//         });
-//       }
-// }
-
-// export {
-//     Cart
-// }
+export {
+    Cart
+}
