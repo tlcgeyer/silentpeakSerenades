@@ -1,5 +1,5 @@
 import {cart} from '../model/index.js'
-import { express } from 'express';
+import  express  from 'express';
 import bodyParser from 'body-parser';
 import { verifyAToken } from '../middleware/AuthenticateUser.js';
 
