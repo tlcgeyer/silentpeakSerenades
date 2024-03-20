@@ -2,17 +2,11 @@
   <div class="container">
     <ul class="breadcrumbs">
       <li class="breadcrumb">
-        <router-link
-          to="/"
-          style="text-decoration: none; color: grey; font-size: small"
-          class="breadcrumb-label"
-          ><span>Home</span></router-link
-        >
+        <router-link to="/" style="text-decoration: none; color: grey; font-size: small"
+          class="breadcrumb-label"><span>Home</span></router-link>
       </li>
       <li class="breadcrumb item-active">
-        <span class="breadcrumb-label" style="color: grey; font-size: small"
-          >Instruments</span
-        >
+        <span class="breadcrumb-label" style="color: grey; font-size: small">Instruments</span>
       </li>
     </ul>
     <div class="row d-block d-flex">
@@ -23,68 +17,33 @@
 
         <div class="col">
           <!-- Search input -->
-          <br /><input
-            @keyup="searchProduct()"
-            id="search1"
-            type="text"
-            placeholder=" Search by name..."
-            class="form-control"
-            ref="inputField"
-            v-model="searchData"
-          />
+          <br>
+          <input @keyup="searchProduct" id="search1" type="text" placeholder=" Search by name..." class="form-control"
+            ref="inputField" v-model="searchData" />
         </div>
 
         <div class="col dropdown d-flex justify-content-end">
           <!-- sort button -->
-          <button
-            type="button"
-            class="btn btn-light"
-            data-bs-toggle="dropdown"
-            aria-expanded="false"
-          >
-            Sort by price
-            <svg
-              width="32"
-              height="32"
-              viewBox="0 0 32 32"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M16 28L9 21L10.4 19.6L16 25.2L21.6 19.6L23 21L16 28Z"
-                fill="#777777"
-              />
-            </svg>
-          </button>
-          <ul class="dropdown-menu">
-            <li>
-              <a class="dropdown-item" href="#" @click="sortByPrice('highest')"
-                >Lowest to Highest</a
-              >
-            </li>
-            <li>
-              <a class="dropdown-item" href="#" @click="sortByPrice('lowest')"
-                >Highest to lowest</a
-              >
-            </li>
-          </ul>
-          <ul>
-      <li v-for="item in sortedItems" :key="item.id">{{ prod.prodName }} - ${{ prod.prodAmount }}</li>
-    </ul>
+          <div class="dropdown">
+            <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown"
+              aria-expanded="false">
+              Sort by
+            </button>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="#" @click="sortingLow">Lowest to Highest</a></li>
+              <li><a class="dropdown-item" href="#" @click="sortingHigh">Highest to Lowest</a></li>
+            </ul>
+          </div>
         </div>
       </div>
     </div>
     <hr />
     <br /><br />
 
-    <div class="row mx-2" v-if="products" id="alignment">
-      <Card v-for="product in products" :key="product.prodID">
+    <div class="row mx-2" v-if="filteredProducts && filteredProducts.length > 0" id="alignment">
+      <Card v-for="product in filteredProducts" :key="product.prodID">
         <template #cardHeader>
-          <h4
-            class="card-title"
-            id="theName"
-            style="background-color: whitesmoke; font-size: large"
-          >
+          <h4 class="card-title" id="theName" style="background-color: whitesmoke; font-size: large">
             {{ product.prodName }}
           </h4>
         </template>
@@ -101,9 +60,7 @@
         </template>
         <template #cardFooter>
           <div class="buttons">
-            <router-link
-              :to="{ name: 'singleItem', params: { id: product.prodID } }"
-            >
+            <router-link :to="{ name: 'singleItem', params: { id: product.prodID } }">
               <button>View More</button>
             </router-link>
             <button @click="addToCart(product)">Add To Cart</button>
@@ -127,8 +84,7 @@ export default {
   data() {
     return {
       searchData: "",
-      highest: true,
-      filterData: "",
+      filteredProducts: [],
     };
   },
   components: {
@@ -141,46 +97,28 @@ export default {
     },
   },
   mounted() {
-    this.$store.dispatch("fetchProducts");
+    this.$store.dispatch("fetchProducts").then(() => {
+      this.filteredProducts = [...this.products];
+    });
   },
   methods: {
     searchProduct() {
-        this.searchData == ""
-          this.products.filter((item) => {
-              return item.prodName.toLowerCase().includes(this.searchData);
-            });
+      this.filteredProducts = this.searchData.trim() === '' ? [...this.products] :
+        this.products.filter(item => {
+          return item.prodName.toLowerCase().includes(this.searchData.toLowerCase());
+        });
     },
-    sortByPrice () {
-      if (!this.highest) {
-        this.highest = true;
-        return this.filteredProducts.sort(
-          (a, b) => a.prodAmount - b.prodAmount
-        );
-      } else {
-        this.highest = false;
-        return this.filteredProducts.sort(
-          (a, b) => b.prodAmount - a.prodAmount
-        );
-      }
+    sortingLow() {
+      this.filteredProducts = [...this.filteredProducts].sort((p1, p2) => p1.prodAmount - p2.prodAmount);
     },
-
-    // singleItem(prodID) {
-    //     const selectedProd = this.products.find(product => product.prodID === prodID)
-    //     if (selectedProd) {
-    //         this.$store.commit("setProduct", selectedProd)
-    //         this.$router.push({ name: "InstrumentsView", params: { prodID: selectedProd.prodID } })
-    //     }
+    sortingHigh() {
+      this.filteredProducts = [...this.filteredProducts].sort((p1, p2) => p2.prodAmount - p1.prodAmount);
+    },
+    // addToCart(product) {
+    //   // Implement your addToCart logic here
     // }
-
-    // filterCategories() {
-    //     this.filteredProducts = this.filterData == '' ?
-    //     this.products :
-    //     this.products.filter(item =>{
-    //         return item.category.toLowerCase().includes(this.filterData.toLowerCase());
-    //     })
-    // }
-  },
-};
+  }
+}
 </script>
 
 <style scoped>
