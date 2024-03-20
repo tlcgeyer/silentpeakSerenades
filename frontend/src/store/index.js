@@ -286,10 +286,12 @@ export default createStore({
       })
     }
     },
-   //adding products to the cart
-  async addToCart(context, payload) {
-      try {
-        if (cookies.get("VerifiedUser")) {
+  //  adding products to the cart
+  async addToCart(context,payload) {
+    try {
+      let{msg} = (await axios.post(`${peakURL}/cart/add`, payload)).data
+      if (cookies.get("VerifiedUser")) {
+          
           sweet ({
             title: "Added to Cart",
             text: msg,
