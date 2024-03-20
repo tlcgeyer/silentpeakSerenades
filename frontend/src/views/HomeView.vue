@@ -5,33 +5,39 @@
     <!-- Featured products -->
     <div class="row">
       <div class="col">
-        <div class="card" style="width: 20rem;">
-          <img src="https://i.ibb.co/C9SpfJg/concert-grade-purple-bamboo-flute.png" class="card-img-top img-fluid" alt="dizi" loading="lazy">
+        <div class="card" style="width: 20rem; height: 30rem;">
+          <img src="https://i.ibb.co/C9SpfJg/concert-grade-purple-bamboo-flute.png" class="card-img-top img-fluid"
+            alt="dizi" loading="lazy">
           <div class="card-body">
             <h5 class="card-title">Concert Grade Purple Bamboo Dizi </h5> <br>
-            <router-link to="/singleItem/2002" style=" color: white; background-color:#7A6354; font-family: 'Barlow';" class="btn">View
+            <router-link to="/singleItem/2002" style=" color: white; background-color:#7A6354; font-family: 'Barlow';"
+              class="btn">View
               more</router-link>
           </div>
         </div>
       </div>
 
       <div class="col">
-        <div class="card" style="width: 20rem; height: 100%;">
-          <img src="https://i.ibb.co/BNYmbFF/howlite-nails-medium.png" class="card-img-top img-fluid" alt="accessories" loading="lazy">
+        <div class="card" style="width: 20rem; height: 30rem;">
+          <img src="https://i.ibb.co/BNYmbFF/howlite-nails-medium.png" class="card-img-top img-fluid" alt="accessories"
+            loading="lazy">
           <div class="card-body">
             <h5 class="card-title" style="margin-top: 27%;">Gemstone Inspired Composite Guzheng Nails </h5> <br>
-            <router-link to="/singleItem/2012" style=" color: white; background-color:#7A6354; font-family: 'Barlow';" class="btn">View
+            <router-link to="/singleItem/2012" style=" color: white; background-color:#7A6354; font-family: 'Barlow';"
+              class="btn">View
               more</router-link>
           </div>
         </div>
       </div>
 
       <div class="col">
-        <div class="card" style="width: 20rem;">
-          <img src="https://i.ibb.co/YjRr3w7/premium-quality-rose-pipa.png" class="card-img-top img-fluid" alt="pipa" loading="lazy">
+        <div class="card" style="width: 20rem; height: 30rem;">
+          <img src="https://i.ibb.co/YjRr3w7/premium-quality-rose-pipa.png" class="card-img-top img-fluid" alt="pipa"
+            loading="lazy">
           <div class="card-body">
             <h5 class="card-title">Rosy Sandalwood Pipa</h5> <br>
-            <router-link to="/singleItem/2016" style=" color: white; background-color:#7A6354; font-family: 'Barlow';" class="btn">View
+            <router-link to="/singleItem/2016" style=" color: white; background-color:#7A6354; font-family: 'Barlow';"
+              class="btn">View
               more</router-link>
           </div>
         </div>
@@ -79,7 +85,6 @@ img[alt="pipa"] {
   width: 265px;
   margin-left: 45px;
 }
-
 
 .card-title {
   font-family: 'Barlow';
