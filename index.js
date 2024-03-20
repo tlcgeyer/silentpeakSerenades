@@ -1,5 +1,6 @@
 import { userRouter, express } from './Controller/UserController.js';
-import { productRouter } from './Controller/ProductController.js'
+import { productRouter } from './Controller/ProductController.js';
+import {cartRouter} from './Controller/CartController.js';
 import cookieParser from "cookie-parser";
 import { errorHandling } from "./middleware/ErrorHandling.js";
 import path from 'path';
@@ -35,6 +36,7 @@ app.get('^/$|/silentpeakSerenades', (req, res)=>{
 })
 app.use('/users', userRouter)
 app.use('/products', productRouter)
+app.use('/cart', cartRouter)
 app.use(errorHandling)
 app.listen(port, ()=>{
     console.log(`Server is running on port ${port}`);
