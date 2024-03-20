@@ -16,17 +16,22 @@
             <div class="col-md-6">
                 <form @submit.prevent="loginInto">
                     <div class="inputs">
-                        <label for="email">Email</label>
-                        <input type="email" oninvalid="this.setCustomValidity('Please enter your email address')"
-                            oninput="this.setCustomValidity('')" class="email" name="email" v-model="emailAdd"
-                            placeholder="Email">
-                        <label for="password">Password</label>
-                        <input type="password" oninvalid="this.setCustomValidity('Please enter your password')"
-                            oninput="this.setCustomValidity('')" class="email" name="password" v-model="userPwd"
-                            placeholder="Password">
+                        <div class="d-flex justify-content-start">
+                            <label for="email">Email</label>
+                            <input type="email" oninvalid="this.setCustomValidity('Please enter your email address')"
+                                oninput="this.setCustomValidity('')" v-model="payload.emailAdd" required />
+                        </div>
+
+
+                        <div class="d-flex justify-content-start">
+                            <label for="password">Password</label>
+                            <input type="password" oninvalid="this.setCustomValidity('Please enter a password')"
+                                oninput="this.setCustomValidity('')" id="password" v-model="payload.userPwd" required />
+                        </div> <br>
                     </div>
-                    
-                    <router-link to="/"><button type="submit">login</button></router-link>
+                    <div class="d-flex justify-content-center">
+                        <button @click="loginInto" type="submit" class="loginBtn">Login</button>
+                    </div> <br><br>
                 </form>
             </div>
         </div>
@@ -40,8 +45,10 @@ const { cookies } = useCookies()
 export default {
     data() {
         return {
+            payload: {
             emailAdd: "",
-            userPwd: ""
+            userPwd: "" 
+            }
         }
     },
     computed: {
@@ -50,8 +57,8 @@ export default {
         }
     },
     methods: {
-        login() {
-            this.$store.dispatch("login", this.payload);
+        loginInto() {
+            this.$store.dispatch("login", this.payload)
         }
     },
     beforeCreate() {

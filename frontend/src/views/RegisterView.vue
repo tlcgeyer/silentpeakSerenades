@@ -14,7 +14,7 @@
       <div class="justify-content-center" id="registerForm">
          <form @submit.prevent="registerForm">
           <!-- first name -->
-          <div class="floating-label">
+          <div class="d-flex justify-content-start">
             <label for="firstName">First Name</label>
           <input type="text" oninvalid="this.setCustomValidity('Please enter your first name')"
             oninput="this.setCustomValidity('')" id="firstName" v-model="payload.firstName"
@@ -59,6 +59,20 @@
                   id="password" v-model="payload.userPwd" required />
           </div> <br>
 
+          <div class="d-flex justify-content-start">
+            <label for="profile">Profile</label>
+                <input type="text"
+                  oninvalid="this.setCustomValidity('Please insert your picture here')" oninput="this.setCustomValidity('')"
+                  id="profile" v-model="payload.userProfile" required />
+          </div> <br>
+
+          <div class="d-flex justify-content-start">
+            <label for="profile">Role</label>
+                <input type="text"
+                  oninvalid="this.setCustomValidity('user by default')" oninput="this.setCustomValidity('')"
+                  id="profile" v-model="payload.userRole" required />
+          </div> <br>
+
            <div class="d-flex justify-content-center">
           <button  @click="registerForm" type="submit" class="signupBtn">Create account</button> <br>
         </div> <br><br>
@@ -69,6 +83,8 @@
 </template>
 
 <script>
+import { useCookies } from 'vue3-cookies';
+const { cookies } = useCookies()
 
 export default {
   data() {
@@ -81,16 +97,23 @@ export default {
           gender: '',
           emailAdd: '',
           userPwd: '',
-          // userRole: '',
-          // userProfile: '',
+          userRole: '',
+          userProfile: '',
       }
     }
   },
   methods: {
     registerForm() {
       this.$store.dispatch("addUser", this.payload)
-      
     }
+  },
+  computed: {
+    user() {
+      return this.$store.state.user
+    }
+  },
+  mounted() {
+    console.log(cookies.get("LegitUser"));
     }
   }
 
