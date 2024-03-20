@@ -6,7 +6,7 @@ const {cookies} = useCookies()
 import router from '@/router'
 import AuthenticateUser from '../service/AuthenticateUser.js'
 const peakURL = "https://silentpeakserenades.onrender.com"
-
+import {applyToken} from '@/service/AuthenticateUser.js'
 
 export default createStore({
   state: {
@@ -286,78 +286,75 @@ export default createStore({
       })
     }
     },
-  //  //adding products to the cart
-  // async addToCart(context, payload) {
-  //     try {
-  //       applyToken()
-  //       let { msg } = (await axios.post(`${peakURL}/cart/add`, payload)).data;
-  //       context.dispatch("fetchCart");
-  //       if (cookies.get("VerifiedUser")) {
-  //         sweet ({
-  //           title: "Added to Cart",
-  //           text: msg,
-  //           icon: "success",
-  //           timer: 4000,
-  //         });
-  //       } else {
-  //         router.push({ name: "login" });
-  //       }
-  //     } catch (e) {
-  //       sweet ({
-  //         title: "ERROR",
-  //         text: "Cannot add to cart",
-  //         icon: "error",
-  //         timer: 4000,
-  //       });
-  //     }
-  //   },
-  // //removing thing from cart
-  //   async deleteFromCart(context, payload) {
-  //     try {
-  //       applyToken()
-  //       let { data } = await axios.delete(`${peakURL}/cart/delete/${payload}`);
-  //       if (data) {
-  //         context.dispatch("fetchCart");
-  //         sweet ({
-  //           title: "Removed Agent",
-  //           text: data.msg,
-  //           icon: "success",
-  //           timer: 2000,
-  //         });
-  //         setTimeout(() => {
-  //           location.reload()
-  //         }, 2000);
-  //       }
-  //     } catch (e) {
-  //       sweet ({
-  //         title: "ERROR",
-  //         text: "Cannot remove item from cart",
-  //         icon: "error",
-  //         timer: 4000,
-  //       });
-  //     }
-  //   },
-  // //clearing the cart
-  //      async clearCart(context) {
-  //     try {
-  //       let { data } = await axios.delete(`${peakURL}cart/delete`);
-  //       console.log(data);
-  //       context.dispatch("fetchCart");
-  //       sweet({
-  //         title: "Cart successfully cleared!",
-  //         text: data.msg,
-  //         icon: "success",
-  //         timer: 4000,
-  //       });
-  //     } catch (e) {
-  //       sweet({
-  //         title: "ERROR",
-  //         text: "Unable to clear the cart",
-  //         icon: "error",
-  //         timer: 4000,
-  //       });
-  //     }
-  //   },
+   //adding products to the cart
+  async addToCart(context, payload) {
+      try {
+        if (cookies.get("VerifiedUser")) {
+          sweet ({
+            title: "Added to Cart",
+            text: msg,
+            icon: "success",
+            timer: 4000,
+          });
+        } else {
+          router.push({ name: "login" });
+        }
+      } catch (e) {
+        sweet ({
+          title: "ERROR",
+          text: "Cannot add to cart",
+          icon: "error",
+          timer: 4000,
+        });
+      }
+    },
+  //removing thing from cart
+    async deleteFromCart(context, payload) {
+      try {
+        applyToken()
+        let { data } = await axios.delete(`${peakURL}/cart/delete/${payload}`);
+        if (data) {
+          context.dispatch("fetchCart");
+          sweet ({
+            title: "Removed Agent",
+            text: data.msg,
+            icon: "success",
+            timer: 2000,
+          });
+          setTimeout(() => {
+            location.reload()
+          }, 2000);
+        }
+      } catch (e) {
+        sweet ({
+          title: "ERROR",
+          text: "Cannot remove item from cart",
+          icon: "error",
+          timer: 4000,
+        });
+      }
+    },
+  //clearing the cart
+       async clearCart(context) {
+      try {
+        let { data } = await axios.delete(`${peakURL}cart/delete`);
+        console.log(data);
+        context.dispatch("fetchCart");
+        sweet({
+          title: "Cart successfully cleared!",
+          text: data.msg,
+          icon: "success",
+          timer: 4000,
+        });
+      } catch (e) {
+        sweet({
+          title: "ERROR",
+          text: "Unable to clear the cart",
+          icon: "error",
+          timer: 4000,
+        });
+      }
+    },
   },
   modules: {
   }

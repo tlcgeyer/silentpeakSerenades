@@ -28,7 +28,7 @@
                             <td>{{ product.prodUrl }}</td>
                             <td>{{ product.prodDesc }}</td>
                             <td>{{ product.prodAmount }}</td>
-                            <button class="delete" @click="deleteFromCart(product.orderID)">Delete</button>
+                            <button class="delete" @click="deleteFromCart(product.cartID)">Delete</button>
                         </tr>
                     </tbody>
                 </table>
@@ -38,7 +38,7 @@
 </template>
 
 <script>
-import { getRole } from '../service/AuthenticateUser.js';
+import {getRole} from '@/service/AuthenticateUser.js'
 
 export default {
   name: "CartView",

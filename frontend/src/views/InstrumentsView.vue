@@ -85,6 +85,7 @@ export default {
     return {
       searchData: "",
       filteredProducts: [],
+      userID: ""
     };
   },
   components: {
@@ -114,9 +115,13 @@ export default {
     sortingHigh() {
       this.filteredProducts = [...this.filteredProducts].sort((p1, p2) => p2.prodAmount - p1.prodAmount);
     },
-    // addToCart(product) {
-    //   // Implement your addToCart logic here
-    // }
+    addToCart(product) {
+      this.$store.dispatch('addToCart', { prodID: product.prodID, userID: this.userID });
+  
+         // Optionally, you can show a success message or perform any other action upon successful addition to cart
+         console.log("Added to cart successfully");
+        console.error("Failed to add to cart:");
+    }
   }
 }
 </script>
