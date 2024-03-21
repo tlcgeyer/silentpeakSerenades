@@ -1,6 +1,6 @@
 import { connection as db} from "../config/index.js";
 import { hash,compare } from "bcrypt";
-import { createToken } from "../middleware/AuthenticateUser.js"
+import { createToken } from "../middleware/AuthenticateUser.js";
 
 class Users{
     fetchUsers(req, res) {
@@ -30,6 +30,37 @@ class Users{
             })
         })
     }
+    fetchUserProfile(req, res) {
+        const qry = `
+        SELECT *
+        FROM users WHERE
+        emailAdd = ${req.params.emailAdd}
+        `
+        db.query(qry, (err, result) => {
+            if (err) throw err
+            res.json({
+                status: res.statusCode,
+                result
+            })
+        })
+    }
+
+    //checking if email matches password provided
+    fetchUserPwd(req, res) {
+        const qry = `
+        SELECT
+        userPwd FROM users
+        WHERE emailAdd = ${req.params.emailAdd}
+        `
+        db.query(qry, (err, result) => {
+            if (err) throw err
+            res.json({
+                status: res.statusCode,
+                result
+            })
+        })
+    }
+
     async addUser(req, res){
         let data = req.body
         data.userPwd = await hash(data?.userPwd, 10)
@@ -75,7 +106,7 @@ class Users{
             })
         })
     }
-    deleteUser(req, res){
+    async deleteUser(req, res){
         const qry = `
         DELETE FROM Users
         WHERE userID = ${req.params.id}
@@ -88,7 +119,7 @@ class Users{
             })
         })
     }
-    login(req, res){
+    async login(req, res){
         const {emailAdd, userPwd} = req.body
         const qry = `
         SELECT userID, firstName, lastName, emailAdd, gender, userAge, userRole, userProfile, userPwd

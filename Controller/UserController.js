@@ -1,5 +1,5 @@
 import bodyParser from 'body-parser';
-import { verifyAToken } from '../middleware/AuthenticateUser.js';
+import { createToken } from '../middleware/AuthenticateUser.js';
 import { users } from '../model/index.js';
 import express from 'express';
 
@@ -25,6 +25,18 @@ userRouter.get('/:id', (req, res)=> {
         res.json({
             status: res.statusCode,
             msg: "Failed to retrieve a user."
+        })
+    }
+})
+
+// Adding a  user's profile
+userRouter.post('/userProfile', bodyParser.json(), (req, res) => {
+    try {
+        users.fetchUserProfile(req, res)
+    } catch (e) {
+        res.json({
+            status: res.statusCode,
+            msg: "Failed to get user's profile"
         })
     }
 })
