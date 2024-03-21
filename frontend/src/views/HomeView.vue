@@ -43,31 +43,8 @@
         </div>
       </div>
     </div>
-
-    <!-- Shop by Collections! -->
-    <h6 class="display-6 subHeading">SHOP BY COLLECTION</h6>
-    <div class="row">
-      <div class="col">
-        <span>Dizi</span>
-
-      </div>
-
-      <div class="col">
-        <span>Guqin</span>
-      </div>
-
-      <div class="col">
-        <span>Pipa</span>
-      </div>
-
-      <div class="col">
-        <span>Guzheng</span>
-      </div>
-      <div class="col">
-        <span>Erhu</span>
-      </div>
-    </div>
   </div>
+  <br> <br><br> <br>
 </template>
 
 <script>

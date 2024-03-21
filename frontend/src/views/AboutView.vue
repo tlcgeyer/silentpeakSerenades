@@ -9,7 +9,7 @@
         <span class="breadcrumb-label" style="color: grey; font-size:small;">About</span>
       </li>
     </ul>
-    <h1>About</h1>
+    <h1 style="font-family: 'Barlow';">About</h1> <br><br>
 
     <p>Welcome to Silent Peak Serenades, where the echoes of ancient Chinese melodies resonate in the heart of
       tradition. Nestled amidst the mist-covered peaks, our online store invites you to embark on a journey through the
@@ -61,6 +61,8 @@
 </template>
 
 <style scoped>
+@import url('https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Karla:ital,wght@0,200..800;1,200..800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
 .breadcrumb:not(:first-child):before {
   display: inline-block;
   margin: 0.25rem;

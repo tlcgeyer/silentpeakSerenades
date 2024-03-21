@@ -10,7 +10,7 @@
       </li>
     </ul>
 
-    <!-- <div class="col">
+    <div class="col">
         <h1>Welcome Back To Your Profile {{ user.firstName }} {{ user.lastName }}</h1>
         <div class="info">
                 <br>
@@ -34,8 +34,8 @@
                 <br>
             </div>
         </div>
-    <!- Button trigger modal -->
-    <!-- <button
+    <!--Button trigger modal --> 
+    <button
       type="button"
       class="btn"
       @click="openEditModal(user.userID)"
@@ -43,9 +43,9 @@
       :data-bs-target="'#exampleModal' + user.userID"
     >
       Edit
-    </button> -->
+    </button> 
     <!-- Modal -->
-    <!-- <div
+     <div
       class="modal fade"
       :id="'exampleModal' + user.userID"
       tabindex="-1"
@@ -138,80 +138,27 @@
     </div>
     <button class="btn" @click.prevent="LogOut" >Logout</button>
     <button class="del btn" @click="deleteUser(user.userID)">Delete</button>
-     -->
+    
     </div>
-</template>
+</template> 
 
 <script>
 // import router from '@/router'
 // import { useCookies } from 'vue3-cookies'
 // const { cookies } = useCookies()
+  
+    export default {
+    
+    mounted() {
+        this.$store.dispatch("fetchUsers");
+    },
 
-//     export default {
-//     props: ["user"],
-//     data() {
-//       return {
-//         editingUser: {
-//         ...this.user,
-//       },
-//       editingUserID: null,
-//     };
-//     },
-//     methods: {
-//         LogOut() {
-//             cookies.remove("LegitUser")
-//             try {
-//                 const data = JSON.parse(localStorage.getItem("user"));
-                
-//                 if (data) {
-//                     localStorage.removeItem("user")
-//                 }
-//             } catch (error) {
-//                 console.error("Error fetching data from local storage:", error);
-//             }
-//             router.push({ name: "login"});
-//         },
-//         openEditModal(userID) {
-//         this.editingUserID = userID;
-//         this.editingUser = {
-//           ...this.$store.state.user
-//         };
-//       },
-//       updateUser(userID) {
-//         this.$store
-//           .dispatch("updateUser", {
-//             userID: userID,
-//             ...this.editingUser,
-//           })
-//           .then(() => {
-//             console.log("user successfully updated");
-//             setTimeout(() => {
-//               location.reload();
-//             }, 500);
-//           })
-//           .catch((err) => {
-//             console.error("Error while updating: ", err);
-//           });
-//       },
-//       deleteUser(userID) {
-//     if (confirm("Are you sure you want to delete this user?"))
-//       this.$store.dispatch("deleteUser", userID)
-//     setTimeout(() => {
-//       location.reload();
-//     }, 500);
-//     router.push({ name: "login" });
-//   },
-//   },
-//     mounted() {
-//         this.$store.dispatch("fetchUsers");
-//     },
-
-//     computed: {
-//         user() {
-//             return this.$store.state.user;
-//         },
-//     },
-//     } -->
+    computed: {
+        user() {
+            return this.$store.state.user;
+        },
+    },
+    } 
 </script>
 
 <style scoped>

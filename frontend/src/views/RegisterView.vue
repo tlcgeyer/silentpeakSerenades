@@ -10,7 +10,7 @@
       </li>
     </ul>
     <div class="main-content">
-      <h5 class="display-6">Register</h5> <br><br> <br>
+      <h5 class="display-6" style="font-family: 'Karla';">Create Account</h5> <br><br> <br>
       <div class="justify-content-center" id="registerForm">
          <form @submit.prevent="registerForm">
           <!-- first name -->
