@@ -4,7 +4,7 @@ class Cart {
   //fetching products from cart
       fetchCarts(req, res){
         const qry = `
-            SELECT cartID, prodID, userID, prodDesc, quantity, prodAmount
+            SELECT cartID, prodID, userID, quantity, prodAmount
             FROM Cart;
         `
         db.query(qry, (err, results)=>{
@@ -18,8 +18,9 @@ class Cart {
  
       fetchCart(req, res){
         const qry = `
-            SELECT cartID, prodID, userID, prodDesc, quantity, prodAmount
-            FROM Cart;
+            SELECT cartID, prodID, userID, quantity, prodAmount
+            FROM Cart
+            WHERE cartID = ${req.params.id};
         `
         db.query(qry, (err, results)=>{
             if(err) throw err
@@ -33,22 +34,17 @@ class Cart {
   
     //adding items to the cart
     addToCart(req, res) {
+      const data = req.body;
       const qry = `
-                INSERT INTO Cart 
-                SET ?;
+                INSERT INTO Cart (userID, prodID,quantity, prodAmount)
+                VALUES (?, ?, ?, ?,?);
             `;
         
-      db.query(qry, [req.body], (err) => {
-        if (err) {
-          console.error(err);
-          return res.status(500).json({
-            status: res.statusCode,
-            msg: "Failed to add item to cart."
-          });
-        }
+      db.query(qry, [data.userID, data.prodID, data.quantity, data.prodAmount], (err) => {
+        if (err)  throw err;
         res.json({
           status: res.statusCode,
-          msg: "Added To Cart"
+          msg: "Successfully added cart!"
         });
       });
        
@@ -56,19 +52,14 @@ class Cart {
 
     //update stuff in the cart
     updateCart(req, res) {
+      const data = req.body;
       const qry = `
       UPDATE Cart
-      SET?
+      SET userID = ? , prodID = ? , quantity = ? , prodAmount = ?, 
       WHERE cartID = ${req.params.id};
       `
-      db.query(qry, [req.body], (err) => {
-        if (err) {
-          console.error(err);
-          return res.status(500).json({
-            status: res.statusCode,
-            msg: "Failed to update item in cart."
-          });
-        }
+      db.query(qry, [data.userID, data.prodID, data.quantity, data.prodAmount ], (err) => {
+        if (err) throw err;
         res.json({
           status: res.statusCode,
           msg: "Successfully updated in Cart"
@@ -84,13 +75,7 @@ class Cart {
                 WHERE cartID = ${req.params.id};
             `
       db.query(qry, [req.body], (err) => {
-        if (err) {
-          console.error(err);
-          return res.status(500).json({
-            status: res.statusCode,
-            msg: "Failed to delete item from cart."
-          });
-        }
+        if (err) throw err;
         res.json({
           status: res.statusCode,
           msg: "Item deleted from cart",
@@ -98,29 +83,7 @@ class Cart {
       });
     }
     
-    //clearing the cart
-       clearCart(req, res) {
-      const qry = `
-        DELETE FROM Cart
-        WHERE cartID = ?
-        `;
-      db.query(qry, [req.body.cartID], (err) => {
-        if (err) {
-          console.error(err);
-          return res.status(500).json({
-            status: res.statusCode,
-            msg: "Failed to clear the cart."
-          });
-        }
-        res.json({
-          status: res.statusCode,
-          msg: "Cart successfully cleared!",
-        });
-      });
-    }
   }
-
-
 export {
     Cart
 }
