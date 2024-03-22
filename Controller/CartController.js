@@ -18,7 +18,7 @@ cartRouter.get('/', verifyAToken, (req, res) => {
 })
 
 // Fetching only one item
-carttRouter.get('/:id', verifyAToken, (req, res) => {
+cartRouter.get('/:id', verifyAToken, (req, res) => {
     try{
         cart.fetchCart(req, res)
     }catch(e) {
