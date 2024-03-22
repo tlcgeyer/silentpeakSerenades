@@ -5,7 +5,7 @@ class Cart {
       fetchCart(req, res){
         const qry = `
             SELECT cartID, prodID, userID, prodDesc, quantity, prodAmount
-            FROM Courses;
+            FROM Cart;
         `
         db.query(qry, (err, results)=>{
             if(err) throw err
@@ -18,11 +18,10 @@ class Cart {
  
   
     //adding items to the cart
-    addToCart({ prodID, userID, prodDesc, prodURL, quantity, prodAmount }) {
+    addToCart(req, res) {
       const qry = `
                 INSERT INTO Cart (prodID, userID, prodDesc, prodURL, quantity, prodAmount) 
-                VALUES (? , ?)
-
+                VALUES (? , ?, ?, ?, ?, ?)
             `;
         
       db.query(qry, [prodID, userID, prodDesc, prodURL, quantity, prodAmount], (err) => {
