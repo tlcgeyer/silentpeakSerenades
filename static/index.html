@@ -106,22 +106,27 @@
         </tr>
         <tr>
             <td>GET</td>
-            <td>"/user/:id/cart"</td>
+            <td>"/carts"</td>
             <td>Fetching all the items from the cart</td>
         </tr>
         <tr>
+            <td>GET</td>
+            <td>"/carts/:id"</td>
+            <td>Fetching an item from the cart</td>
+        </tr>
+        <tr>
             <td>POST</td>
-            <td>"/user/:id/cart"</td>
+            <td>"/cart/addCart"</td>
             <td>Adding items to the cart</td>
         </tr>
         <tr>
             <td>PATCH</td>
-            <td>"/user/:id/cart/:id"</td>
+            <td>"/cart/updateCart"</td>
             <td>Updating items in the cart</td>
         </tr>
         <tr>
             <td>DELETE</td>
-            <td>"/user/:id/cart/:id"</td>
+            <td>"/cart/deleteCart"</td>
             <td>Deleting a item from the cart</td>
         </tr>
     </table>

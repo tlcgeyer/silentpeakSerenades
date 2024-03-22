@@ -2,6 +2,20 @@ import { connection as db } from "../config/index.js";
 
 class Cart {
   //fetching products from cart
+      fetchCarts(req, res){
+        const qry = `
+            SELECT cartID, prodID, userID, prodDesc, quantity, prodAmount
+            FROM Cart;
+        `
+        db.query(qry, (err, results)=>{
+            if(err) throw err
+            res.json({
+                status: res.statusCode,
+                results
+            })
+        })
+    }
+ 
       fetchCart(req, res){
         const qry = `
             SELECT cartID, prodID, userID, prodDesc, quantity, prodAmount
