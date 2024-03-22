@@ -19,8 +19,9 @@
           <!-- Search input -->
           <br>
           <input @keyup="searchProduct" id="search1" type="text"
-            oninvalid="this.setCustomValidity('Search item by name')" oninput="this.setCustomValidity('')"
-            placeholder=" 🔍 Search by name..." ref="inputField" v-model="searchData" />
+            oninvalid="this.setCustomValidity('Search item by name')"   oninput="this.setCustomValidity('')"
+            placeholder="   🔍 Search by name..." ref="inputField" v-model="searchData"/>
+            
         </div>
 
         <div class="col dropdown d-flex justify-content-end">
@@ -80,7 +81,7 @@
     <div class="row" v-else>
       <SpinnerComp></SpinnerComp>
     </div>
-  </div>
+  </div><br><br><br>
 </template>
 
 <script>
@@ -126,9 +127,6 @@ export default {
     addToCart(product) {
       this.$store.dispatch('addToCart', { prodID: product.prodID, userID: this.userID });
 
-      // Optionally, you can show a success message or perform any other action upon successful addition to cart
-      console.log("Added to cart successfully");
-      console.error("Failed to add to cart:");
     }
   }
 }

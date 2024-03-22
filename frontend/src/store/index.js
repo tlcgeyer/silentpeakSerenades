@@ -36,9 +36,6 @@ export default createStore({
     setProducts(state, value) {
       state.products = value
     },
-    setCurrentUser(state, data) {
-      state.currentUser=data
-    },
     setToken(state, token) {
       state.token = token;
       cookies.set("userToken", token, {
@@ -189,24 +186,7 @@ export default createStore({
       })
     }
     },
-    //getting the user's profile
-    async userProfile(context) {
-  try {
-    let token = cookies.get('token');
-    let currentUser = null;
-
-    if (token) {
-      token = token.split('.')[1];
-      currentUser = JSON.parse(window.atob(token));
-      cookies.set('userRole', currentUser.userRole);
-      context.commit('setCurrentUser', currentUser);
-      console.log(currentUser.userRole);
-      // Update the currentUser state
-    }
-  } catch (error) {
-    console.error('Failed to retrieve user profile', error);
-  }
-},
+  
 
   async logOut(){
   let cookies=cookies.keys()
