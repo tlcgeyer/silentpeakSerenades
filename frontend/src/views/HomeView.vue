@@ -4,8 +4,8 @@
     <h6 class="display-6 heading1">FEATURED PRODUCTS</h6>
     <!-- Featured products -->
     <div class="row">
-      <div class="col">
-        <div class="card" style="width: 20rem; height: 30rem;">
+      <div class="col-md-6 col-lg-4 mb-4">
+        <div class="card">
           <img src="https://i.ibb.co/C9SpfJg/concert-grade-purple-bamboo-flute.png" class="card-img-top img-fluid"
             alt="dizi" loading="lazy">
           <div class="card-body">
@@ -17,8 +17,8 @@
         </div>
       </div>
 
-      <div class="col">
-        <div class="card" style="width: 20rem; height: 30rem;">
+      <div class="col-md-6 col-lg-4 mb-4">
+        <div class="card">
           <img src="https://i.ibb.co/BNYmbFF/howlite-nails-medium.png" class="card-img-top img-fluid" alt="accessories"
             loading="lazy">
           <div class="card-body">
@@ -30,8 +30,8 @@
         </div>
       </div>
 
-      <div class="col">
-        <div class="card" style="width: 20rem; height: 30rem;">
+      <div class="col-md-6 col-lg-4 mb-4">
+        <div class="card">
           <img src="https://i.ibb.co/YjRr3w7/premium-quality-rose-pipa.png" class="card-img-top img-fluid" alt="pipa"
             loading="lazy">
           <div class="card-body">
@@ -48,8 +48,6 @@
 </template>
 
 <script>
-
-
 export default {
   name: 'HomeView',
 }
@@ -59,8 +57,17 @@ export default {
 @import url('https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Karla:ital,wght@0,200..800;1,200..800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
 img[alt="pipa"] {
-  width: 265px;
-  margin-left: 45px;
+  width: 84%;
+  margin-left: 10%;
+}
+
+img[alt="dizi"] {
+  width: 100%;
+}
+
+img[alt="accessories"] {
+  width: 90%;
+  margin-left: 10%;
 }
 
 .card-title {
@@ -84,7 +91,10 @@ img[alt="pipa"] {
 }
 
 .card {
-  margin-left: 15%;
   border-color: #9F7E69;
+}
+
+body {
+  font-family: 'Barlow';
 }
 </style>

@@ -1,12 +1,14 @@
 import { createStore } from 'vuex'
 import axios from 'axios'
-import sweet from 'sweetalert'
+import sweet from 'sweetalert';
+import Swal from 'sweetalert2';
 import {useCookies} from 'vue3-cookies'
 const {cookies} = useCookies()
 import router from '@/router'
+import { applyToken } from '../service/AuthenticateUser.js'
 import AuthenticateUser from '../service/AuthenticateUser.js'
 const peakURL = "https://silentpeakserenades.onrender.com"
-import {applyToken} from '@/service/AuthenticateUser.js'
+
 
 export default createStore({
   state: {
@@ -16,7 +18,8 @@ export default createStore({
     products: null,
     token: null,
     msg: null,
-    cart: []
+    cart: [],
+    currentUser:null
   },
   getters: {
   },
@@ -32,6 +35,9 @@ export default createStore({
     },
     setProducts(state, value) {
       state.products = value
+    },
+    setCurrentUser(state, value) {
+      state.currentUser=value
     },
     setToken(state, token) {
       state.token = token;
@@ -80,8 +86,8 @@ export default createStore({
       AuthenticateUser.applyToken(token)
       sweet({
         title: msg,
-        text: `Welcome back, 
-        ${result?.firstName} ${result?.lastName}`,
+        text: `👋🏼 Welcome back, 
+        ${result?.firstName} ${result?.lastName}!`,
         icon: "success",
         timer: 2000
       })
@@ -150,7 +156,6 @@ export default createStore({
         context.dispatch('fetchUsers')
         sweet({
           title: 'Update user',
-          imageUrl:"https://giphy.com/embed/RLPxCiyYgfak0LHVlG",
           text: msg,
           icon: "success",
           timer: 2000
@@ -183,7 +188,57 @@ export default createStore({
         timer: 2000
       })
     }
-  },
+    },
+    //getting the user's profile
+    async userProfile(context) {
+  try {
+    let token = cookies.get('token');
+    let currentUser = null;
+
+    if (token) {
+      token = token.split('.')[1];
+      currentUser = JSON.parse(window.atob(token));
+      cookies.set('userRole', currentUser.userRole);
+      context.commit('setCurrentUser', currentUser);
+      console.log(currentUser.userRole);
+      // Update the currentUser state
+    }
+  } catch (error) {
+    console.error('Failed to retrieve user profile', error);
+  }
+},
+
+  async logOut(){
+  let cookies=cookies.keys()
+  console.log(cookies)    
+  
+  Swal.fire({
+    title: 'Are you sure?',
+    text: 'You will be logged out',
+    icon: 'warning',
+    showCancelButton: true,
+    confirmButtonColor: 'rgb(71, 98, 218)',
+    cancelButtonColor: '#d33',
+    confirmButtonText: 'Yes, log me out!'
+  }).then((result) => {
+    if (result.isConfirmed) {
+      // Remove JWT token
+      cookies.remove('token');
+      cookies.remove('userRole')
+      // Redirect to login page
+      router.push('/login');
+      setTimeout(()=>{
+          window.location.reload();
+      },10)
+    
+    } else {
+      // Reload the page if Cancel is clicked
+      window.location.reload();
+    }
+  });
+},
+    
+    
   // fetching a product
   async fetchProduct(context, payload) {
     try{

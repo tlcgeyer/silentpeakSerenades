@@ -2,84 +2,67 @@
   <div class="container">
     <ul class="breadcrumbs">
       <li class="breadcrumb">
-        <router-link to="/" style="text-decoration: none; color: grey; font-size: small;"
+        <router-link to="/" style="text-decoration: none; color: #8b5b4d; font-size: small;"
           class="breadcrumb-label"><span>Home</span></router-link>
       </li>
       <li class="breadcrumb item-active">
-        <span class="breadcrumb-label" style="color: grey; font-size:small;">Create an account</span>
+        <span class="breadcrumb-label" style="color: #8b5b4d; font-size: small;">Create an account</span>
       </li>
     </ul>
     <div class="main-content">
-      <h5 class="display-6" style="font-family: 'Karla';">Create Account</h5> <br><br> <br>
+      <h5 class="display-6" style="font-family: 'Karla'; font-size: 24px; color: #8b5b4d;">Create Account</h5> <br><br>
+      <br>
       <div class="justify-content-center" id="registerForm">
-         <form @submit.prevent="registerForm">
+        <form @submit.prevent="registerForm">
           <!-- first name -->
-          <div class="d-flex justify-content-start">
-            <label for="firstName">First Name</label>
-          <input type="text" oninvalid="this.setCustomValidity('Please enter your first name')"
-            oninput="this.setCustomValidity('')" id="firstName" v-model="payload.firstName"
-            required />
-          </div><br>
-         
+          <div class="form-group">
+            <label for="firstName" style="color: #8b5b4d;">First Name</label>
+            <input type="text" id="firstName" v-model="payload.firstName" required style="border-color: #8b5b4d;" />
+          </div>
+
           <!-- last name -->
-          <div class="d-flex justify-content-start">
-            <label for="lastName">Last Name</label>
-              <input type="text"
-              oninvalid="this.setCustomValidity('Please enter your last name')" oninput="this.setCustomValidity('')"
-              id="lastName" v-model="payload.lastName" required />
-          </div><br>
-
-          <div class="d-flex justify-content-start">
-          <!-- gender -->
-          <label for="gender">Gender</label>
-            <input type="text" id="gender"
-              oninvalid="this.setCustomValidity('Please provide your gender')" oninput="this.setCustomValidity('')"
-              v-model="payload.gender" required />
+          <div class="form-group">
+            <label for="lastName" style="color: #8b5b4d;">Last Name</label>
+            <input type="text" id="lastName" v-model="payload.lastName" required style="border-color: #8b5b4d;" />
           </div>
 
-          <div class="d-flex justify-content-start">
-          <!-- age -->
-          <label for="age">Age</label>
-            <input type="text" 
-              oninvalid="this.setCustomValidity('Please provide your age')" oninput="this.setCustomValidity('')"
-              v-model="payload.userAge" required />
+          <div class="form-group">
+            <label for="gender" style="color: #8b5b4d;">Gender</label>
+            <input type="text" id="gender" v-model="payload.gender" required style="border-color: #8b5b4d;" />
           </div>
 
-          <div class="d-flex justify-content-start">
-            <label for="email">Email</label>
-                <input type="email" 
-                  oninvalid="this.setCustomValidity('Please enter your email address')"
-                  oninput="this.setCustomValidity('')" v-model="payload.emailAdd" required />
+          <div class="form-group">
+            <label for="age" style="color: #8b5b4d;">Age</label>
+            <input type="text" v-model="payload.userAge" required style="border-color: #8b5b4d;" />
           </div>
 
-          <div class="d-flex justify-content-start">
-            <label for="password">Password</label>
-                <input type="password"
-                  oninvalid="this.setCustomValidity('Please enter a password')" oninput="this.setCustomValidity('')"
-                  id="password" v-model="payload.userPwd" required />
+          <div class="form-group">
+            <label for="email" style="color: #8b5b4d;">Email</label>
+            <input type="email" v-model="payload.emailAdd" required style="border-color: #8b5b4d;" />
+          </div>
+
+          <div class="form-group">
+            <label for="password" style="color: #8b5b4d;">Password</label>
+            <input type="password" id="password" v-model="payload.userPwd" required style="border-color: #8b5b4d;" />
           </div> <br>
 
-          <div class="d-flex justify-content-start">
-            <label for="profile">Profile</label>
-                <input type="text"
-                  oninvalid="this.setCustomValidity('Please insert your picture here')" oninput="this.setCustomValidity('')"
-                  id="profile" v-model="payload.userProfile" required />
+          <div class="form-group">
+            <label for="profile" style="color: #8b5b4d;">Profile</label>
+            <input type="text" id="profile" v-model="payload.userProfile" required style="border-color: #8b5b4d;" />
           </div> <br>
 
-          <div class="d-flex justify-content-start">
-            <label for="profile">Role</label>
-                <input type="text"
-                  oninvalid="this.setCustomValidity('user by default')" oninput="this.setCustomValidity('')"
-                  id="profile" v-model="payload.userRole" required />
+          <div class="form-group">
+            <label for="role" style="color: #8b5b4d;">Role</label>
+            <input type="text" id="role" v-model="payload.userRole" required style="border-color: #8b5b4d;" />
           </div> <br>
 
-           <div class="d-flex justify-content-center">
-          <button  @click="registerForm" type="submit" class="signupBtn">Create account</button> <br>
-        </div> <br><br>
+          <div class="form-group">
+            <button type="submit" style="background-color: #8b5b4d; color: #fff;">Create account</button>
+          </div>
         </form>
       </div>
-        </div>
     </div>
+  </div>
 </template>
 
 <script>
@@ -88,17 +71,16 @@ const { cookies } = useCookies()
 
 export default {
   data() {
-    return{
-      payload:{
-        // userID: '',
-          firstName: '',
-          lastName: '',
-          userAge: '',
-          gender: '',
-          emailAdd: '',
-          userPwd: '',
-          userRole: '',
-          userProfile: '',
+    return {
+      payload: {
+        firstName: '',
+        lastName: '',
+        userAge: '',
+        gender: '',
+        emailAdd: '',
+        userPwd: '',
+        userRole: 'user',
+        userProfile: '',
       }
     }
   },
@@ -114,36 +96,85 @@ export default {
   },
   mounted() {
     console.log(cookies.get("LegitUser"));
-    }
   }
-
+}
 </script>
 
-
 <style scoped>
-@import url('https://fonts.googleapis.com/css2?family=Karla:ital,wght@0,200..800;1,200..800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Karla:wght@400;700&display=swap');
 
-
-.signupBtn {
-  background-color: #B78E64;
-  padding: 5px;
-  font-family: 'Karla';
-  border-color: #B78E64;
-  color: antiquewhite;
-  padding: 5px;
+.container {
+  max-width: 600px;
+  margin: auto;
+  padding: 20px;
 }
 
-#registerForm {
-  font-family: 'Karla'
+.breadcrumbs {
+  list-style-type: none;
+  padding: 0;
+}
+
+.breadcrumb {
+  display: inline-block;
+  margin-right: 5px;
 }
 
 .breadcrumb:not(:first-child):before {
   display: inline-block;
-  margin: 0.25rem;
+  margin: 0 5px;
   transform: rotate(15deg);
-  border-right: 0.1em solid #a3a3a3;
+  border-right: 1px solid #a3a3a3;
   height: 0.7em;
   content: '';
 }
 
+.breadcrumb-label {
+  color: grey;
+  font-size: small;
+}
+
+.main-content {
+  margin-top: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  padding: 20px
+}
+
+.display-6 {
+  font-family: 'Karla', sans-serif;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+label {
+  font-weight: bold;
+  font-size: 16px;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+  width: 100%;
+  padding: 10px;
+  border-radius: 5px;
+  font-size: 14px;
+  border: 1px solid #8b5b4d;
+  /* Brownish color */
+}
+
+button {
+  background-color: #B78E64;
+  padding: 10px 20px;
+  border-radius: 5px;
+  color: antiquewhite;
+  border: none;
+  cursor: pointer;
+  font-family: 'Karla', sans-serif;
+  font-size: 16px;
+}
+
+button:hover {
+  background-color: #A5794E;
+}
 </style>

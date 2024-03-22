@@ -2,40 +2,36 @@
     <div class="container">
         <ul class="breadcrumbs">
             <li class="breadcrumb">
-                <router-link to="/" style="text-decoration: none; color: grey; font-size: small;"
+                <router-link to="/" style="text-decoration: none; color: #8b5b4d; font-size: small;"
                     class="breadcrumb-label"><span>Home</span></router-link>
             </li>
             <li class="breadcrumb item-active">
-                <span class="breadcrumb-label" style="color: grey; font-size:small;">Login</span>
+                <span class="breadcrumb-label" style="color: #8b5b4d; font-size: small;">Login</span>
             </li>
         </ul>
-        <div class="d-flex justify-content-center">
-            <h4 class="display-6" style="font-family: 'Karla';">Login</h4>
-        </div>
-        <div class="row">
-            <div class="col-md-6">
+        <div class="main-content">
+            <h5 class="display-6" style="font-family: 'Karla'; font-size: 24px; color: #8b5b4d;">Login</h5> <br><br>
+            <div class="justify-content-center" id="loginForm">
                 <form @submit.prevent="loginInto">
-                    <div class="inputs">
-                        <div class="d-flex justify-content-start">
-                            <label for="email">Email</label>
-                            <input type="email" oninvalid="this.setCustomValidity('Please enter your email address')"
-                                oninput="this.setCustomValidity('')" v-model="payload.emailAdd" required />
-                        </div>
-
-
-                        <div class="d-flex justify-content-start">
-                            <label for="password">Password</label>
-                            <input type="password" oninvalid="this.setCustomValidity('Please enter a password')"
-                                oninput="this.setCustomValidity('')" id="password" v-model="payload.userPwd" required />
-                        </div> <br>
+                    <div class="form-group">
+                        <label for="email" style="color: #8b5b4d;">Email</label>
+                        <input type="email" id="email" v-model="payload.emailAdd" required
+                            style="border-color: #8b5b4d;" />
                     </div>
-                    <div class="d-flex justify-content-center">
-                        <button @click="loginInto" type="submit" class="loginBtn">Login</button>
-                    </div> <br><br>
 
-                    <p style="font-family: 'Karla';">Don't have an account? <span><router-link to="/register">Sign up</router-link></span> right here!</p>
+                    <div class="form-group">
+                        <label for="password" style="color: #8b5b4d;">Password</label>
+                        <input type="password" id="password" v-model="payload.userPwd" required
+                            style="border-color: #8b5b4d;" />
+                    </div> <br>
+
+                    <div class="form-group">
+                        <button type="submit" style="background-color: #8b5b4d; color: #fff;">Login</button>
+                    </div>
                 </form>
             </div>
+            <p class="signup-link" style="color: #8b5b4d;">Don't have an account? <router-link to="/register"
+                    style="color: #8b5b4d;">Sign up</router-link></p>
         </div>
     </div>
 </template>
@@ -48,8 +44,8 @@ export default {
     data() {
         return {
             payload: {
-            emailAdd: "",
-            userPwd: "" 
+                emailAdd: "",
+                userPwd: ""
             }
         }
     },
@@ -70,18 +66,87 @@ export default {
         console.log(cookies.get("LegitUser"));
     },
 }
-
 </script>
 
 <style scoped>
-@import url('https://fonts.googleapis.com/css2?family=Karla:ital,wght@0,200..800;1,200..800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Karla:wght@400;700&display=swap');
+
+.container {
+    max-width: 600px;
+    margin: auto;
+    padding: 20px;
+}
+
+.breadcrumbs {
+    list-style-type: none;
+    padding: 0;
+}
+
+.breadcrumb {
+    display: inline-block;
+    margin-right: 5px;
+}
 
 .breadcrumb:not(:first-child):before {
     display: inline-block;
-    margin: 0.25rem;
+    margin: 0 5px;
     transform: rotate(15deg);
-    border-right: 0.1em solid #a3a3a3;
+    border-right: 1px solid #a3a3a3;
     height: 0.7em;
     content: '';
+}
+
+.breadcrumb-label {
+    color: grey;
+    font-size: small;
+}
+
+.main-content {
+    margin-top: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+}
+
+.display-6 {
+    font-family: 'Karla', sans-serif;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+label {
+    font-weight: bold;
+    font-size: 16px;
+}
+
+input[type="email"],
+input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    font-size: 14px;
+    border: 1px solid #8b5b4d;
+}
+
+button {
+    background-color: #B78E64;
+    padding: 10px 20px;
+    border-radius: 5px;
+    color: antiquewhite;
+    border: none;
+    cursor: pointer;
+    font-family: 'Karla', sans-serif;
+    font-size: 16px;
+}
+
+button:hover {
+    background-color: #A5794E;
+}
+
+.signup-link {
+    margin-top: 20px;
+    text-align: center;
+    font-size: 16px;
 }
 </style>
