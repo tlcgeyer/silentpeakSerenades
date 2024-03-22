@@ -17,6 +17,18 @@ cartRouter.get('/', verifyAToken, (req, res) => {
     }
 })
 
+// Fetching only one item
+carttRouter.get('/:id', verifyAToken, (req, res) => {
+    try{
+        cart.fetchCart(req, res)
+    }catch(e) {
+        res.json({
+            status: res.statusCode,
+            msg: "Failed to retrieve a single item."
+        })
+    }
+})
+
 //add to cart
 cartRouter.post('/add', bodyParser.json(), verifyAToken, (req, res) => {
     try{
