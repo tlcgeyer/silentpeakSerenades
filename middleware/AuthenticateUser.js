@@ -45,53 +45,53 @@ function verifyAToken(req, res, next) {
 }
 }
 
-const auth = async (req, res, next) => {
-    const { userPwd, emailAdd } = req.body;
-    try {
-        const hashedPassword = await userPwd(emailAdd);
-        const validPassword = await compare(userPwd, hashedPassword);
+// const auth = async (req, res, next) => {
+//     const { userPwd, emailAdd } = req.body;
+//     try {
+//         const hashedPassword = await userPwd(emailAdd);
+//         const validPassword = await compare(userPwd, hashedPassword);
 
-         if (validPassword) {
-            const currentUser = await userProfile(emailAdd);
-            const token = createToken(currentUser);
-            res.cookie('token', token, { httpOnly: false, expiresIn: '1h' });
-            res.json({
-                token: token,
-                msg: 'Yosh! I am logged in~😁👍',
-                user: currentUser
-            });
-            next();
-        } else {
-            res.status(401).json({ error: 'Incorrect email or password' });
-        }
-    }catch (error) {
-        console.error(error);
-        res.status(500).json({ error: "Internal server error" });
-    }
+//          if (validPassword) {
+//             const currentUser = await userProfile(emailAdd);
+//             const token = createToken(currentUser);
+//             res.cookie('token', token, { httpOnly: false, expiresIn: '1h' });
+//             res.json({
+//                 token: token,
+//                 msg: 'Yosh! I am logged in~',
+//                 user: currentUser
+//             });
+//             next();
+//         } else {
+//             res.status(401).json({ error: 'Incorrect email or password' });
+//         }
+//     }catch (error) {
+//         console.error(error);
+//         res.status(500).json({ error: "Internal server error" });
+//     }
 
     
-};
+// };
 
-const authenticate = (req, res, next) => {
-  const token = req.cookies.token;
-    if (!token) {
-        res.status(401).json({ error: "Token not provided" });
-        return;
-    }
-    try {
-        const decoded = verify(token, process.env.SECRET_KEY);
-        req.user = decoded;
-        next();
-    } catch (error) {
-        res.status(401).json({ error: "Invalid token" });
-    }
-};
+// const authenticate = (req, res, next) => {
+//   const token = req.cookies.token;
+//     if (!token) {
+//         res.status(401).json({ error: "Token not provided" });
+//         return;
+//     }
+//     try {
+//         const decoded = verify(token, process.env.SECRET_KEY);
+//         req.user = decoded;
+//         next();
+//     } catch (error) {
+//         res.status(401).json({ error: "Invalid token" });
+//     }
+// };
 
 
 export {
     createToken,
     verifyAToken,
-    auth,
-    authenticate
+    // auth,
+    // authenticate
 
 }

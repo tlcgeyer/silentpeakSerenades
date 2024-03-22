@@ -5,45 +5,44 @@ import { verifyAToken } from '../middleware/AuthenticateUser.js';
 
 const cartRouter = express.Router()
 
-// fetching the item
-cartRouter.get('/', verifyAToken, (req, res) => {
+// fetching the items
+cartRouter.get('/user/:id/carts', verifyAToken, (req, res) => {
     try{
         cart.fetchCart(req,res)
     }catch(e) {
         res.json({
             status: res.statusCode,
-            msg: 'Failed to retrieve items.'
+            msg: 'Failed to retrieve item from cart.'
         })
     }
 })
 
-// Fetching only one item
-cartRouter.get('/:id', verifyAToken, (req, res) => {
-    try{
-        cart.fetchCart(req, res)
-    }catch(e) {
-        res.json({
-            status: res.statusCode,
-            msg: "Failed to retrieve a single item."
-        })
-    }
-})
-
-//add to cart
-cartRouter.post('/add', bodyParser.json(), verifyAToken, (req, res) => {
+//adding items to cart
+cartRouter.post('/user/:id/cart', bodyParser.json(), verifyAToken, (req, res) => {
     try{
         cart.addToCart(req, res)
     }catch(e) {
         res.json({
             status: res.statusCode,
-            msg: "Failed to add item."
+            msg: "Failed to add item to cart."
         })
     }
 })
 
-  
+// updating items in the cart
+cartRouter.patch('/user/:id/cart/:id', bodyParser.json(), verifyAToken, (req, res)=> {
+    try{
+        cart.updateCart(req,res)
+    }catch(e) {
+        res.json({
+            status: res.statusCode,
+            msg: "Failed to update item in cart."
+        })
+    }
+})
+
 //deleting item from the cart
-cartRouter.delete('/delete/:id', bodyParser.json(), verifyAToken, (req, res)=> {
+cartRouter.delete('/user/:id/cart/:id', bodyParser.json(), verifyAToken, (req, res)=> {
     try{
         cart.deleteFromCart(req, res)
     }catch(e) {
@@ -55,7 +54,7 @@ cartRouter.delete('/delete/:id', bodyParser.json(), verifyAToken, (req, res)=> {
 })
 
 // clearing the cart
-cartRouter.delete('/delete', bodyParser.json(), verifyAToken ,(req, res) => {
+cartRouter.delete('/user/:id/carts', bodyParser.json(), verifyAToken ,(req, res) => {
     try {
         cart.clearCart(req, res)
     } catch (e) {

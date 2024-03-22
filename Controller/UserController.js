@@ -29,18 +29,6 @@ userRouter.get('/:id', (req, res)=> {
     }
 })
 
-// Adding a  user's profile
-userRouter.post('/userProfile', bodyParser.json(), (req, res) => {
-    try {
-        users.fetchUserProfile(req, res)
-    } catch (e) {
-        res.json({
-            status: res.statusCode,
-            msg: "Failed to get user's profile"
-        })
-    }
-})
-
 // Adding a new user 
 userRouter.post('/addUser',bodyParser.json(), (req, res) => {
     try {

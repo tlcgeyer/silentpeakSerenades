@@ -20,11 +20,11 @@ class Cart {
     //adding items to the cart
     addToCart(req, res) {
       const qry = `
-                INSERT INTO Cart (prodID, userID, prodDesc, prodURL, quantity, prodAmount) 
-                VALUES (? , ?, ?, ?, ?, ?)
+                INSERT INTO Cart 
+                SET ?;
             `;
         
-      db.query(qry, [prodID, userID, prodDesc, prodURL, quantity, prodAmount], (err) => {
+      db.query(qry, [req.body], (err) => {
         if (err) {
           console.error(err);
           return res.status(500).json({
@@ -40,13 +40,36 @@ class Cart {
        
     }
 
+    //update stuff in the cart
+    updateCart(req, res) {
+      const qry = `
+      UPDATE Cart
+      SET?
+      WHERE cartID = ${req.params.id};
+      `
+      db.query(qry, [req.body], (err) => {
+        if (err) {
+          console.error(err);
+          return res.status(500).json({
+            status: res.statusCode,
+            msg: "Failed to update item in cart."
+          });
+        }
+        res.json({
+          status: res.statusCode,
+          msg: "Successfully updated in Cart"
+        });
+      });
+       
+    }
+
     //removing stuff from the cart
     deleteFromCart(req, res) {
       const qry = `
                 DELETE FROM Cart 
-                WHERE orderID = ?
-            `;
-      db.query(qry, [req.params.id], (err) => {
+                WHERE cartID = ${req.params.id};
+            `
+      db.query(qry, [req.body], (err) => {
         if (err) {
           console.error(err);
           return res.status(500).json({
@@ -65,9 +88,9 @@ class Cart {
        clearCart(req, res) {
       const qry = `
         DELETE FROM Cart
-        WHERE userID = ?
+        WHERE cartID = ?
         `;
-      db.query(qry, [req.body.userID], (err) => {
+      db.query(qry, [req.body.cartID], (err) => {
         if (err) {
           console.error(err);
           return res.status(500).json({

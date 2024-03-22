@@ -21,7 +21,9 @@
             <td>Landing page</td>
         </tr>
     </table>
-    <h3>A table for the User data</h3>
+
+    <br><br>
+    <h3>Table for the User data</h3>
     <table>
         <tr>
             <th>HTTP method</th>
@@ -59,7 +61,8 @@
             <td>To log a user into the application</td>
         </tr>
     </table>
-    <h3>A table for the Product data</h3>
+    <br><br>
+    <h3>Table for the Product data</h3>
     <table>
         <tr>
             <th>HTTP method</th>
@@ -92,5 +95,36 @@
             <td>To remove a product</td>
         </tr>
     </table>
+    <br><br>
+    
+    <h3>Table for the cart</h3>
+    <table>
+        <tr>
+            <th>HTTP method</th>
+            <th>Path</th>
+            <th>Description</th>
+        </tr>
+        <tr>
+            <td>GET</td>
+            <td>"/user/:id/cart"</td>
+            <td>Fetching all the items from the cart</td>
+        </tr>
+        <tr>
+            <td>POST</td>
+            <td>"/user/:id/cart"</td>
+            <td>Adding items to the cart</td>
+        </tr>
+        <tr>
+            <td>PATCH</td>
+            <td>"/user/:id/cart/:id"</td>
+            <td>Updating items in the cart</td>
+        </tr>
+        <tr>
+            <td>DELETE</td>
+            <td>"/user/:id/cart/:id"</td>
+            <td>Deleting a item from the cart</td>
+        </tr>
+    </table>
+    <br><br><br>
 </body>
 </html>
