@@ -17,8 +17,7 @@
           <thead class="table-light">
             <tr>
               <th scope="col">Product Name</th>
-              <th scope="col">Product Image</th>
-              <th scope="col">Product Description</th>
+              <th scope="col">Product Quantity</th>
               <th scope="col">Product Price</th>
               <th scope="col"></th> <!-- Empty column for delete button -->
             </tr>
@@ -26,10 +25,7 @@
           <tbody>
             <tr v-for="product in cart" :key="product.prodID">
               <td>{{ product.prodName }}</td>
-              <td>
-                <img :src="product.prodUrl" alt="Product Image" style="max-width: 100px;">
-              </td>
-              <td>{{ product.prodDesc }}</td>
+              <td>{{ product.quantity }}</td>
               <td>{{ product.prodAmount }}</td>
               <td>
                 <button class="btn btn-danger btn-sm" @click="deleteFromCart(product.cartID)">Delete</button>
@@ -48,7 +44,7 @@ export default {
   name: "CartView",
   data() {
     return {
-      userID: ""
+      items: ""
     }
   },
   methods: {

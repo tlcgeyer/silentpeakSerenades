@@ -9,7 +9,7 @@
         <span class="breadcrumb-label" style="color: grey; font-size:small;">About</span>
       </li>
     </ul>
-    <h1 style="font-family: 'Barlow';">About</h1> <br><br>
+    <h1 style="font-family: 'Barlow';" class="slide-in-text">About</h1> <br><br>
 
     <p>Welcome to Silent Peak Serenades, where the echoes of ancient Chinese melodies resonate in the heart of
       tradition. Nestled amidst the mist-covered peaks, our online store invites you to embark on a journey through the
@@ -71,4 +71,5 @@
   height: 0.7em;
   content: '';
 }
+
 </style>

@@ -47,15 +47,11 @@
           </div> <br>
 
           <div class="form-group">
-            <label for="profile" style="color: #8b5b4d;">Profile</label>
+            <label for="username" style="color: #8b5b4d;">Username</label>
             <input type="text" id="profile" v-model="payload.userProfile" required style="border-color: #8b5b4d;" />
           </div> <br>
 
-          <div class="form-group">
-            <label for="role" style="color: #8b5b4d;">Role</label>
-            <input type="text" id="role" v-model="payload.userRole" required style="border-color: #8b5b4d;" />
-          </div> <br>
-
+          <input type="text" :value="payload.userRole" style="display: none;">
           <div class="form-group">
             <button type="submit" style="background-color: #8b5b4d; color: #fff;">Create account</button>
           </div>
@@ -79,7 +75,7 @@ export default {
         gender: '',
         emailAdd: '',
         userPwd: '',
-        userRole: 'user',
+        userRole: "user",
         userProfile: '',
       }
     }

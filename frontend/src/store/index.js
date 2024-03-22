@@ -1,7 +1,7 @@
 import { createStore } from 'vuex'
 import axios from 'axios'
 import sweet from 'sweetalert';
-import Swal from 'sweetalert2';
+
 import {useCookies} from 'vue3-cookies'
 const {cookies} = useCookies()
 import router from '@/router'
@@ -77,6 +77,7 @@ export default createStore({
      const {msg, token, result} = (await axios.post(`${peakURL}/users/login`, payload)).data 
      if(result){
       context.commit('setUser', {msg, result})
+      cookies.set('deRole', result.userRole)
       cookies.set('LegitUser', {
         msg, token, result
       })
@@ -185,38 +186,10 @@ export default createStore({
         timer: 2000
       })
     }
-    },
+  },
   
 
-  async logOut(){
-  let cookies=cookies.keys()
-  console.log(cookies)    
-  
-  Swal.fire({
-    title: 'Are you sure?',
-    text: 'You will be logged out',
-    icon: 'warning',
-    showCancelButton: true,
-    confirmButtonColor: 'rgb(71, 98, 218)',
-    cancelButtonColor: '#d33',
-    confirmButtonText: 'Yes, log me out!'
-  }).then((result) => {
-    if (result.isConfirmed) {
-      // Remove JWT token
-      cookies.remove('token');
-      cookies.remove('userRole')
-      // Redirect to login page
-      router.push('/login');
-      setTimeout(()=>{
-          window.location.reload();
-      },10)
-    
-    } else {
-      // Reload the page if Cancel is clicked
-      window.location.reload();
-    }
-  });
-},
+
     
     
   // fetching a product
@@ -324,21 +297,20 @@ export default createStore({
   //  adding products to the cart
   async addToCart(context,cart) {
       try {
-      applyToken() ; 
       localStorage.setItem('checkout', JSON.stringify(cart));
     } catch (error) { 
       alert(error);
     }
     },
   //removing thing from cart
-    async deleteFromCart(context, payload) {
+    async deleteCart(context, payload) {
       try {
         applyToken()
         let { data } = await axios.delete(`${peakURL}/cart/delete/${payload}`);
         if (data) {
           context.dispatch("fetchCart");
           sweet ({
-            title: "Removed Agent",
+            title: "Removed from cart",
             text: data.msg,
             icon: "success",
             timer: 2000,
@@ -356,27 +328,7 @@ export default createStore({
         });
       }
     },
-  //clearing the cart
-       async clearCart(context) {
-      try {
-        let { data } = await axios.delete(`${peakURL}cart/delete`);
-        console.log(data);
-        context.dispatch("fetchCart");
-        sweet({
-          title: "Cart successfully cleared!",
-          text: data.msg,
-          icon: "success",
-          timer: 4000,
-        });
-      } catch (e) {
-        sweet({
-          title: "ERROR",
-          text: "Unable to clear the cart",
-          icon: "error",
-          timer: 4000,
-        });
-      }
-    },
+  
   },
   modules: {
   }

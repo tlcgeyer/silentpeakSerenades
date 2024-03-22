@@ -70,7 +70,10 @@
 
 <script>
 export default {
-  name: 'NavBar'
+  name: 'NavBar',
+  computed: {
+    
+  }
 }
 </script>
 
@@ -142,4 +145,48 @@ export default {
     /* Adjust title font size */
   }
 }
+
+nav ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+nav ul li {
+  display: inline;
+  margin-right: 20px;
+}
+
+nav ul li a {
+  text-decoration: none;
+  color: #333;
+  transition: color 0.3s; 
+}
+
+nav ul li a:hover {
+  color: #9f423a; 
+}
+
+
+nav ul li a {
+  text-decoration: none;
+  color: #333;
+  position: relative; /* Add relative positioning to anchor element */
+}
+
+nav ul li a::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 2px; /* Set the height of the underline */
+  background-color: transparent; /* Initially, make it transparent */
+  bottom: 0;
+  left: 0;
+  transition: background-color 0.3s; /* Add transition for smooth effect */
+}
+
+nav ul li a:hover::after {
+  background-color: #7f423a; /* Change background color on hover */
+}
+
 </style>

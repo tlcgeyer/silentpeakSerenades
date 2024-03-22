@@ -31,7 +31,15 @@ const routes = [
   {
     path: '/admin',
     name: 'admin',
-    component: ()=> import('../views/AdminView.vue')
+    component: ()=> import('../views/AdminView.vue'),
+    beforeEnter() {
+      if(!cookies.get('LegitUser')) {
+        router.push({name: 'login'})
+      }else if(cookies.get('deRole') !== 'admin'){
+        alert('You have not been given the privileges to view this page.')
+        router.push({name: 'home'})
+      }
+    }
   },
   {
     path: '/contact',
@@ -56,7 +64,21 @@ const routes = [
   {
     path: '/account',
     name: 'account',
-    component: ()=> import('../views/AccountView.vue')
+    component: ()=> import('../views/AccountView.vue'),
+    beforeEnter(){
+      if(!cookies.get('LegitUser')){
+        router.push({name: 'login'})
+      }
+    }
+  },
+  {
+    path: '/logout',
+    name: 'logout',
+    component: ()=> import('../views/HomeView.vue'),
+    beforeEnter(){
+      cookies.remove('LegitUser')
+      router.push({name: 'home'})
+    }
   }
 
 ]

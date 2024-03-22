@@ -27,7 +27,7 @@
             <th>Gender</th>
             <th>Email</th>
             <th>User role</th>
-            <th>User Profile</th>
+            <th>Username</th>
             <th>Action</th>
           </tr>
         </thead>
@@ -43,7 +43,10 @@
             <td>{{ user.userProfile }}</td>
             <td class="d-flex justify-content-between">
               <EditUsers updateUserModal="updateUserModalTarget" />
-              <button @click="event => deleteUser(user.userID)" class="btn btn-sm btn-danger">Delete</button>
+              <button @click="event => deleteUser(user.userID)" class="btn"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M14 8H10V16H14M10 12H12.5M17 8V16H21M3 8V16H5C5.53043 16 6.03914 15.7893 6.41421 15.4142C6.78929 15.0391 7 14.5304 7 14V10C7 9.46957 6.78929 8.96086 6.41421 8.58579C6.03914 8.21071 5.53043 8 5 8H3Z" stroke="#FF0000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
+</button>
             </td>
           </tr>
         </tbody>
@@ -93,8 +96,11 @@
             <td>{{ product.quantity }}</td>
             <td class="d-flex justify-content-between gap-2">
               <EditProducts updateProductModal="updateProductModalTarget" />
-              <button class="btn btn-sm btn-danger deleteButton" @click="event =>
-          deleteProduct(product.prodID)">Delete</button>
+              <button class="btn" @click="event =>
+          deleteProduct(product.prodID)"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M14 8H10V16H14M10 12H12.5M17 8V16H21M3 8V16H5C5.53043 16 6.03914 15.7893 6.41421 15.4142C6.78929 15.0391 7 14.5304 7 14V10C7 9.46957 6.78929 8.96086 6.41421 8.58579C6.03914 8.21071 5.53043 8 5 8H3Z" stroke="#FF0000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
+</button>
             </td>
           </tr>
         </tbody>

@@ -125,7 +125,7 @@ export default {
       this.filteredProducts = [...this.filteredProducts].sort((p1, p2) => p2.prodAmount - p1.prodAmount);
     },
     addToCart(product) {
-      this.$store.dispatch('addToCart', { prodID: product.prodID, userID: this.userID });
+      this.$store.dispatch("addToCart", { prodID: product.prodID, userID: this.userID });
 
     }
   }
