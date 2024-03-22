@@ -89,6 +89,9 @@ export default {
       this.$store.dispatch("addUser", this.payload)
     }
   },
+  beforeCreate() {
+    this.$store.dispatch('fetchUsers')
+  },
   computed: {
     user() {
       return this.$store.state.user

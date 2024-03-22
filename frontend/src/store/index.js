@@ -36,8 +36,8 @@ export default createStore({
     setProducts(state, value) {
       state.products = value
     },
-    setCurrentUser(state, value) {
-      state.currentUser=value
+    setCurrentUser(state, data) {
+      state.currentUser=data
     },
     setToken(state, token) {
       state.token = token;
@@ -342,28 +342,13 @@ export default createStore({
     }
     },
   //  adding products to the cart
-  async addToCart(context,payload) {
-    try {
-      let{msg} = (await axios.post(`${peakURL}/cart/add`, payload)).data
-      if (cookies.get("VerifiedUser")) {
-          
-          sweet ({
-            title: "Added to Cart",
-            text: msg,
-            icon: "success",
-            timer: 4000,
-          });
-        } else {
-          router.push({ name: "login" });
-        }
-      } catch (e) {
-        sweet ({
-          title: "ERROR",
-          text: "Cannot add to cart",
-          icon: "error",
-          timer: 4000,
-        });
-      }
+  async addToCart(context,cart) {
+      try {
+      applyToken() ; 
+      localStorage.setItem('checkout', JSON.stringify(cart));
+    } catch (error) { 
+      alert(error);
+    }
     },
   //removing thing from cart
     async deleteFromCart(context, payload) {

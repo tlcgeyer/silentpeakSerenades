@@ -1,164 +1,106 @@
 <template>
-    <div class="container">
-        <ul class="breadcrumbs">
+  <div class="container">
+    <ul class="breadcrumbs">
       <li class="breadcrumb">
-        <router-link to="/" style="text-decoration: none; color: grey; font-size: small;"
-          class="breadcrumb-label"><span>Home</span></router-link>
+        <router-link to="/" style="text-decoration: none; color: grey; font-size: small;" class="breadcrumb-label">
+          <span>Home</span>
+        </router-link>
       </li>
       <li class="breadcrumb item-active">
         <span class="breadcrumb-label" style="color: grey; font-size:small;">Your Account</span>
       </li>
     </ul>
-
-    <div class="col">
-        <h1>Welcome Back To Your Profile {{ user.firstName }} {{ user.lastName }}</h1>
+    <div v-if="userProfile && user.userID">
+      <div class="col">
+        <h1>Welcome Back To Your Profile {{ userProfile.firstName }} {{ user.lastName }}</h1>
         <div class="info">
-                <br>
-               <span>First Name:</span> {{ user.firstName }}
-                <br>
-                <br>
-                <span>Last Name:</span> {{ user.lastName }}
-                <br>
-                <br>
-                <span>Age:</span> {{ user.userAge }}
-                <br>
-                <br>
-                <span>Gender:</span> {{ user.gender }}
-                <br>
-                <br>
-                <span>Role:</span> {{ user.userRole }}
-                <br>
-                <br>
-                <span>Email</span> {{ user.emailAdd }}
-                <br>
-                <br>
-            </div>
-        </div>
-    <!--Button trigger modal --> 
-    <button
-      type="button"
-      class="btn"
-      @click="openEditModal(user.userID)"
-      data-bs-toggle="modal"
-      :data-bs-target="'#exampleModal' + user.userID"
-    >
-      Edit
-    </button> 
-    <!-- Modal -->
-     <div
-      class="modal fade"
-      :id="'exampleModal' + user.userID"
-      tabindex="-1"
-      :aria-labelledby="'exampleModalLabel' + user.userID"
-      aria-hidden="true"
-    >
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h1 class="modal-title fs-5" id="exampleModalLabel">
-              Update User
-            </h1>
-            <button
-              type="button"
-              class="btn-close"
-              data-bs-dismiss="modal"
-              aria-label="Close"
-            ></button>
-          </div>
-          <center>
-            <div class="modal-body">
-            <input
-              placeholder="First Name"
-              type="name"
-              v-model="editingUser.firstName"
-              required
-            />
-            <input
-              placeholder="Surname"
-              type="surname"
-              v-model="editingUser.lastName"
-              required
-            />
-            <input
-              placeholder="Age"
-              type="number"
-              v-model="editingUser.userAge"
-              required
-            />
-            <input
-              placeholder="Gender"
-              type="gender"
-              v-model="editingUser.gender"
-              required
-            />
-            <input
-              placeholder="Email"
-              type="email"
-              v-model="editingUser.emailAdd"
-              required
-            />
-            <input
-              placeholder="Password"
-              type="password"
-              v-model="editingUser.userPwd"
-              required
-            />
-            <input
-              placeholder="Role"
-              type="role"
-              v-model="editingUser.userRole"
-              required
-            />
-            <input
-              placeholder="Profile Image"
-              type="text"
-              v-model="editingUser.profileURL"
-              required
-            />
-          </div>
-        </center>
-          <div class="modal-footer">
-            <button
-              type="button"
-              class="btn btn-secondary"
-              data-bs-dismiss="modal"
-            >
-              Close
-            </button>
-            <button
-              type="button"
-              class="btn btn-primary"
-              @click="updateUser(user.userID)"
-            >
-              Save changes
-            </button>
-          </div>
+          <br>
+          <span>First Name:</span> {{ userProfile.currentUser.firstName }}
+          <br>
+          <br>
+          <span>Last Name:</span> {{ userProfile.currentUser.lastName }}
+          <br>
+          <br>
+          <span>Age:</span> {{ userProfile.currentUser.userAge }}
+          <br>
+          <br>
+          <span>Gender:</span> {{userProfile.currentUser.gender }}
+          <br>
+          <br>
+          <span>Role:</span> {{ userProfile.currentUser.userRole }}
+          <br>
+          <br>
+          <span>Email</span> {{ userProfile.currentUser.emailAdd }}
+          <br>
+          <br>
+          <span>Email</span> {{ userProfile.currentUser.userPwd }}
+          <br>
+          <br>
         </div>
       </div>
     </div>
-    <button class="btn" @click.prevent="LogOut" >Logout</button>
-    <button class="del btn" @click="deleteUser(user.userID)">Delete</button>
-    
+    <div class="row d-flex justify-content-center" v-else>
+      <SpinnerComp></SpinnerComp>
     </div>
-</template> 
+    <EditUsers updateUserModal="updateUserModalTarget" />
+
+
+  </div>
+  <button class="btn" @click.prevent="LogOut">Logout</button>
+  <button @click="event => deleteUser(user.userID)" class="btn btn-sm btn-danger">Delete</button>
+</template>
 
 <script>
-// import router from '@/router'
-// import { useCookies } from 'vue3-cookies'
-// const { cookies } = useCookies()
-  
-    export default {
-    
-    mounted() {
-        this.$store.dispatch("fetchUsers");
-    },
+import EditUsers from '@/components/EditUsers.vue';
+import SpinnerComp from '@/components/SpinnerComp.vue';
 
-    computed: {
-        user() {
-            return this.$store.state.user;
-        },
+
+export default {
+  data() {
+    return {
+      payload: {
+        userID: '',
+        firstName: '',
+        lastName: '',
+        userAge: '',
+        gender: '',
+        emailAdd: '',
+        userPwd: '',
+        userRole: 'user',
+        userProfile: ''
+      }
+    }
+  },
+  components: {
+    SpinnerComp,
+    EditUsers
+  },
+  mounted() {
+    this.$store.dispatch("fetchUsers");
+    console.log(this.$cookies.get("LegitUser"));
+  },
+  computed: {
+    userProfile() {
+      return this.$store.state.currentUser;
     },
-    } 
+  },
+  methods: {
+    deleteUser(userID) {
+      this.$store.dispatch('deleteUser', { id: userID });
+    },
+    // decodeTokenAndSetUserInfo() {
+    //   let encode = cookies.get('token');
+    //   if (encode) {
+    //     encode = encode.split('.')[1];
+    //     const decodedToken = JSON.parse(window.atob(encode));
+    //     console.log(decodedToken);
+    //     this.$store.commit('setCurrentUser', decodedToken);
+    //     // Set isLoading to false once user profile data is loaded
+    //     this.isLoading = false;
+    //   }
+    // },
+  }
+}
 </script>
 
 <style scoped>

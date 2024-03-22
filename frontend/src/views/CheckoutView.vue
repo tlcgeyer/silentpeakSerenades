@@ -10,36 +10,40 @@
       </li>
     </ul>
 
-
     <div class="Cart">
       <h4 class="display-6">Checkout</h4>
-      <table class="table">
-        <thead>
-          <tr>
-            <th scope="col">Product Name</th>
-            <th scope="col">Product Image</th>
-            <th scope="col">Product Description</th>
-            <th scope="col">Product Price</th>
-          </tr>
-        </thead>
-        <tbody v-if="cart">
-          <tr v-for="product in cart" :key="product.productID">
-            <td>{{ product.prodName }}</td>
-            <td>{{ product.prodUrl }}</td>
-            <td>{{ product.prodDesc }}</td>
-            <td>{{ product.prodAmount }}</td>
-            <button class="delete" @click="deleteFromCart(product.cartID)">Delete</button>
-          </tr>
-        </tbody>
-      </table>
-      <button @click="clearCart()">clear</button>
+      <div class="table-responsive">
+        <table class="table table-hover">
+          <thead class="table-light">
+            <tr>
+              <th scope="col">Product Name</th>
+              <th scope="col">Product Image</th>
+              <th scope="col">Product Description</th>
+              <th scope="col">Product Price</th>
+              <th scope="col"></th> <!-- Empty column for delete button -->
+            </tr>
+          </thead>
+          <tbody>
+            <tr v-for="product in cart" :key="product.prodID">
+              <td>{{ product.prodName }}</td>
+              <td>
+                <img :src="product.prodUrl" alt="Product Image" style="max-width: 100px;">
+              </td>
+              <td>{{ product.prodDesc }}</td>
+              <td>{{ product.prodAmount }}</td>
+              <td>
+                <button class="btn btn-danger btn-sm" @click="deleteFromCart(product.cartID)">Delete</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <button class="btn btn-secondary" @click="clearCart()">Clear Cart</button>
     </div>
   </div>
 </template>
 
 <script>
-import { getRole } from '@/service/AuthenticateUser.js'
-
 export default {
   name: "CartView",
   data() {
@@ -53,8 +57,8 @@ export default {
     },
     clearCart() {
       this.$store.dispatch('clearCart')
-    }
-
+    },
+    
   },
   computed: {
     cart() {
@@ -62,15 +66,10 @@ export default {
     },
   },
   mounted() {
-    let user = getRole()
-    if (user) {
-      this.userID = user.userID
-    }
     this.$store.dispatch('fetchCart', this.userID)
   }
 }
 </script>
-
 
 <style scoped>
 .breadcrumb:not(:first-child):before {
@@ -80,5 +79,10 @@ export default {
   border-right: 0.1em solid #a3a3a3;
   height: 0.7em;
   content: '';
+}
+
+/* Additional styles for table */
+.table thead th {
+  border-top: none;
 }
 </style>

@@ -10,15 +10,14 @@
       </li>
     </ul>
     <div class="row">
-      <h4 class="display-6">Users</h4>
-    </div>
-
-    <div class="row">
-      <button class="btn btn  text-dark border-black" data-bs-toggle="modal" data-bs-target="#addUserModal">
-        Add User
-      </button>
-      <AddUser addUserModel="addUserModelTarget" />
-      <table class="table table-bordered">
+      <div class="col">
+        <h4 class="display-6">Users</h4>
+        <button class="btn btn  text-dark border-black" data-bs-toggle="modal" data-bs-target="#addUserModal">
+          Add User
+        </button>
+        <AddUser addUserModel="addUserModelTarget" />
+        <div class="table-responsive">
+        <table class="table table-bordered">
         <thead class="bg-warning text-white">
           <tr>
             <th>User ID</th>
@@ -52,18 +51,23 @@
           <SpinnerComp></SpinnerComp>
         </div>
       </table>
+        </div>
+      </div>
+
+
+    
+        
     </div>
 
     <div class="row mt-5">
-      <h4 class="display-6">Products</h4>
-    </div>
-
-    <div class="row">
-      <button class="btn btn  text-dark border-black" data-bs-toggle="modal" data-bs-target="#addItemModal">
+      <div class="col">
+        <h4 class="display-6">Products</h4>
+         <button class="btn btn  text-dark border-black" data-bs-toggle="modal" data-bs-target="#addItemModal">
         Add Product
       </button>
-      <AddItem addItemModel="addItemModelTarget" />
-      <table class="table table-bordered">
+        <AddItem addItemModel="addItemModelTarget" />
+        <div class="table-responsive">
+           <table class="table table-bordered">
         <thead class="bg-warning text-white">
           <tr>
             <th style="font-size: 13px;">Product ID</th>
@@ -98,8 +102,10 @@
           <SpinnerComp></SpinnerComp>
         </div>
       </table>
+        </div>
+      </div>
     </div>
-  </div>
+    </div>
 </template>
 
 <script>
